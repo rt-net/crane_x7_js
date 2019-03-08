@@ -88,8 +88,8 @@ function MotionPlayBack(time,deg){
 
 	if(time > goal_time){
 		time	=	0;
-		deg		=	data[frame-1].split(",");
 		frame++;
+		deg		=	data[frame-1].split(",");
 	}
 	if(frame==data.length){
 		frame		=	0;

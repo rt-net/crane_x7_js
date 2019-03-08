@@ -63,7 +63,7 @@ io.on('connection', function(socket){
 				for(var i=0; i < data.deg.length; i++){
 					text += String(data.deg[i] + "\n");
 				}
-				var slot = "js/data/" + "out"+data.num+".txt";
+				var slot = "data/" + "out"+data.num+".txt";
 				fs.writeFileSync(slot,text);
 			case "copy":
 				async.series([
