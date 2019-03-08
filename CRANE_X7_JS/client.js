@@ -4,16 +4,16 @@ var socket = io();
 var state = {
 	on	:	0,
 	off	:	0,
-	send:	0,
+	send	:	0,
 	set	:	0,
-	move:	0
+	move	:	0
 };
 
 function SendCommand(command,data,slot){
 	socket.emit("command", {
 		value	: command,
-		deg		: data,
-		num		: slot
+		deg 	: data,
+		num 	: slot
 	});
 	data = null;
 };
@@ -39,11 +39,11 @@ function servoOFF(){
 
 function servoSET_delay(time, deg){
 	copyflag	=	0;
-	var goal	= $('[id=set]').attr('val').split(",");
-	var goal_time	= 1000;
+	var goal	=	$('[id=set]').attr('val').split(",");
+	var goal_time	=	1000;
 
 	if(time > goal_time){
-		time		=	0;
+		time	=	0;
 		state.set	=	0;
 		state.move	=	0;
 		state.on	=	1;
@@ -70,11 +70,11 @@ function servoSET_delay(time, deg){
 	},20);
 }
 
-let deg		=	[];
+let deg 	=	[];
 var frame	=	0;
-var ref		=	[];
+var ref 	=	[];
 function MotionPlayBack(time,deg){
-	var data		=	$('[id=select]').val();
+	var date	=	$('[id=select]').val();
 	var goal_time	=	500;
 	if(data == null) {
 		state.set	=	0;
@@ -89,13 +89,13 @@ function MotionPlayBack(time,deg){
 	if(time > goal_time){
 		time	=	0;
 		frame++;
-		deg		=	data[frame-1].split(",");
+		deg	=	data[frame-1].split(",");
 	}
 	if(frame==data.length){
-		frame		=	0;
+		frame	=	0;
 		var loop	=	$('[id=loop]').prop('checked');
 		if(loop){
-			deg		=	get_rot_data();
+			deg	=	get_rot_data();
 			MotionPlayBack(0,deg);
 		}else{
 			state.set	=	0;
@@ -177,7 +177,7 @@ function Move(){
 		var data	=	$('[id=select]').val();
 		var path	=	$('[id=slot]').val();
 		read_count	=	0;
-		deg			=	[];
+		deg	=	[];
 		SendCommand("move",data,path);
 		return;
 	}
@@ -207,7 +207,7 @@ function copy_flag(){
 
 function sendPort(){
 	SendCommand("send",port_connect);
-	state.send = port_connect;
+	state.send	=	port_connect;
 	socket.emit("send",state);
 }
 
