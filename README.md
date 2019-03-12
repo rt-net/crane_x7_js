@@ -76,7 +76,7 @@ http://****:8080
 
 ### Webサーバに接続
 
-端末に表示されるIPアドレスにブラウザから接続するとCRANE_X7のシミュレータ画面が表示されます.    
+端末に表示されるIPアドレス`http://****:8080`にブラウザから接続するとCRANE_X7のシミュレータ画面が表示されます.    
 この画面で動作の作成などが行えます.   
 
 ![window_image](https://github.com/rt-net/crane_x7_js/blob/image/img/window_image.png)
