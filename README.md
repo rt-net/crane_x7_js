@@ -84,7 +84,7 @@ $ npm start
 ## 使用方法 各種操作説明
 各ボタンを押すと要素が開きます。
 ### モデル変更 `color`
-![color](https://user-images.githubusercontent.com/12367951/54011810-2fe70280-41b7-11e9-8e4b-dc8157d9a602.png)
+![color](https://github.com/rt-net/crane_x7_js/blob/image/img/color.png)
 #### 色変更
  最上部(1~11)が各リンクの色を変更できます。
 
