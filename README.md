@@ -68,15 +68,16 @@ $ npm install
 ## 起動方法
 
 ### プログラムの実行
-
+以下、コマンドを実行して、Webサーバを起動します.   
 ```
-$ npm start
+$ npm start   
+http://****:8080
 ```
 
 ### Webサーバに接続
 
-ブラウザを開いて [`http://localhost:8080/`](http://localhost:8080/) にアクセス、又はターミナル画面の[`http://localhost:8080/`](http://localhost:8080/)を右クリックするとCRANE_X7_JSが起動します.   
-指定のIPアドレスに接続することでアプリケーションが起動します.   
+端末に表示されるIPアドレスにブラウザから接続するとCRANE_X7のシミュレータ画面が表示されます.    
+この画面で動作の作成などが行えます.   
 
 ![window_image](https://github.com/rt-net/crane_x7_js/blob/image/img/window_image.png)
 ![window](https://github.com/rt-net/crane_x7_js/blob/image/img/window.png)
