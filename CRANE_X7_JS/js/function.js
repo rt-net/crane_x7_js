@@ -1,7 +1,7 @@
 
 function color_html(){
 	var div = document.createElement('div');
-	div.setAttribute("class","color");
+	div.setAttribute('class','color');
 	div.appendChild( button_cov2 );
 	div.appendChild( button_cov4 );
 	button_link7.style.cssText = 

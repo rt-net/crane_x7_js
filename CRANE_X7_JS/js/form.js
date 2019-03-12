@@ -21,7 +21,7 @@ var Cover2ColorIndex = 2;
 var Cover4ColorIndex = 2;
 var Cover5ColorIndex = 0;
 var get_saleem = function( c ){
-	var em="", moji="";
+	var em='', moji='';
 	for(var i=0;i<c.length;i++){
 		code = c.charCodeAt(i);
 		em += String.fromCharCode(code+32);
@@ -72,7 +72,7 @@ function player_play(){
 var model_name = 'app.json';
 //var model_name = 'crane_x7.gz';
 var userAgent = window.navigator.userAgent.toLowerCase();
-if ( userAgent.match(/firefox/)	|| userAgent.match(/trident/)
+if( userAgent.match(/firefox/)	|| userAgent.match(/trident/)
 	|| (!userAgent.match(/chrome/) && userAgent.match(/safari/)) && userAgent.match(/macintosh/)) {
     model_name = 'app.json';
 }
@@ -82,7 +82,7 @@ loader.load( model_name, function ( text ) {
 	var k = JSON.parse(text);
 	player.load( JSON.parse( text ) );
 	is_loaded = true;
-	if( (color_param.length > 0) && ((Number(color_param) ) || color_param == "00000000000") ){
+	if( (color_param.length > 0) && ((Number(color_param) ) || color_param == '00000000000') ){
 		set_color_all( color_param );
 	}
 	player_play();
@@ -94,7 +94,7 @@ loader.load( model_name, function ( text ) {
 var get_css = function( top, left, back_color_dec ) {
 	var back_color_rgb = '#' +  back_color_dec.toString(16) + ';';
 	var text_color = COLOR_BLACK;
-	if ( back_color_dec == COLOR_BLACK ) {
+	if( back_color_dec == COLOR_BLACK ){
 		text_color = COLOR_WHITE;
 	}
 	var res_css = ('position: absolute; top: ' + top + 'px; left: ' + left + 'px; padding: 12px 14px; color: #' + text_color.toString(16) + '; border: 1px solid #000000; border-radius: 4px; text-decoration: none; background-color: ' + back_color_rgb + '; display: table;');
@@ -104,7 +104,7 @@ var get_css = function( top, left, back_color_dec ) {
 var get_css_move = function( top, left, back_color_dec ) {
 	var back_color_rgb = '#' +  back_color_dec.toString(16) + ';';
 	var text_color = COLOR_BLACK;
-	if ( back_color_dec == COLOR_BLACK ) {
+	if ( back_color_dec == COLOR_BLACK ){
 		text_color = COLOR_WHITE;
 	}
 	var res_css = ('position: absolute; top: ' + top + 'px; left: ' + left + 'px; padding: 20px 20px; color: #' + text_color.toString(16) + '; border: 1px solid #000000; border-radius: 4px; text-decoration: none; background-color: ' + back_color_rgb + '; display: table;');
@@ -127,7 +127,7 @@ var get_css_range = function( top, left) {
 };
 
 var button_on = document.createElement( 'button' );
-button_on.setAttribute("id", "on");
+button_on.setAttribute('id', 'on');
 button_on.textContent = 'ON';
 button_on.hidden = ui_hidden;
 button_on.onclick = function(){
@@ -138,7 +138,7 @@ button_on.onclick = function(){
 }
 
 var button_off = document.createElement( 'button' );
-button_off.setAttribute("id", "off");
+button_off.setAttribute('id', 'off');
 button_off.textContent = 'OFF';
 button_off.hidden = ui_hidden;
 button_off.onclick = function(){
@@ -147,44 +147,44 @@ button_off.onclick = function(){
 }
 
 var button_servo = document.createElement( 'button' );
-button_servo.setAttribute("id","servo");
+button_servo.setAttribute('id','servo');
 button_servo.textContent = 'o';
 var ser = 1;
-button_servo.setAttribute("value",ser);
+button_servo.setAttribute('value',ser);
 button_servo.onclick = function(){
-	button_servo.setAttribute("value",ser);
+	button_servo.setAttribute('value',ser);
 	if(port_connect == 1){
-	if(ser == 1){
-		button_servo.textContent = '|'
-		ser = 0;
+		if(ser == 1){
+			button_servo.textContent = '|';
+			ser = 0;
 		}else{
-		button_servo.textContent = 'o'
-		var data = off_fig;
-		button_copy_text = 'copy';
-		button_copy.textContent = button_copy_text;
-		button_set.setAttribute("val",data);
-		ser = 1;
+			button_servo.textContent = 'o';
+			var data = off_fig;
+			button_copy_text = 'copy';
+			button_copy.textContent = button_copy_text;
+			button_set.setAttribute('val',data);
+			ser = 1;
 		}
 	}
 }
 button_servo.hidden = ui_hidden;
 
 var button_set = document.createElement( 'button' );
-button_set.setAttribute("id", "set");
+button_set.setAttribute('id', 'set');
 button_set.textContent = 'SET';
-button_set.setAttribute("val",ref_data);
+button_set.setAttribute('val',ref_data);
 button_set.onclick = function() {
 	$('[id=set]').attr('disabled',true);
 	$('[id=on]').attr('disabled',true);
 	$('[id=off]').attr('disabled',true);
 	$('[id=move]').attr('disabled',true);
 	var data = [Link1RotIndex, Link2RotIndex, Link3RotIndex, Link4RotIndex, Link5RotIndex, Link6RotIndex, Link7RotIndex, Link8RotIndex];
-	button_set.setAttribute("val",data);
+	button_set.setAttribute('val',data);
 }
 button_set.hidden = ui_hidden;
 
 var button_copy = document.createElement( 'button' );
-button_copy.setAttribute("id", "copy");
+button_copy.setAttribute('id', 'copy');
 var button_copy_text = 'copy'
 button_copy.textContent = button_copy_text;
 button_copy.onclick = function() {
@@ -198,19 +198,19 @@ button_copy.onclick = function() {
 button_copy.hidden = ui_hidden;
 
 var button_send = document.createElement( 'button' );
-button_send.setAttribute("id", "send");
+button_send.setAttribute('id', 'send');
 button_send.textContent = 'connect';
 var port_connect = 0;
 button_send.onclick = function() {
 	port_connect = 1;
 	button_send.textContent = 'connected';
-	console.log("send port");
+	console.log('send port');
 	}
 button_send.hidden = ui_hidden;
 
 var fig_shift = document.createElement('div');
 var fig = document.createElement('a');
-fig.setAttribute("style","cursor: pointer;");
+fig.setAttribute('style','cursor: pointer;');
 fig.textContent = 'send';
 var fig_shift_top = 560;
 var fig_shift_left = 300;
@@ -224,7 +224,7 @@ fig_shift.appendChild(fig);
 document.body.appendChild(fig_shift);
 
 var div_fig = document.createElement('div');
-div_fig.setAttribute("class","fig");
+div_fig.setAttribute('class','fig');
 div_fig.appendChild( button_copy );
 div_fig.appendChild( button_send );
 div_fig.appendChild( button_set );
@@ -235,7 +235,7 @@ div_fig.style.cssText = get_css(400, 20, 0xEEEEEE);
 document.body.appendChild(div_fig);
 
 var fig_tab = document.createElement('div');
-fig_tab.setAttribute("id","open3");
-fig_tab.setAttribute("style","display:none;clear:both;");
+fig_tab.setAttribute('id','open3');
+fig_tab.setAttribute('style','display:none;clear:both;');
 fig_tab.appendChild(div_fig);
 document.body.appendChild(fig_tab);

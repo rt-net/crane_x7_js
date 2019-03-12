@@ -1,6 +1,6 @@
 var div_shift = document.createElement('div');
 var shift = document.createElement('a');
-shift.setAttribute("style","cursor: pointer;");
+shift.setAttribute('style','cursor: pointer;');
 shift.textContent = 'color';
 var div_shift_top = 460;
 var div_shift_left = 300;
@@ -181,8 +181,8 @@ button_pause.hidden = ui_hidden;
 document.body.appendChild( button_pause );
 
 var div_shift_base = document.createElement('div');
-div_shift_base.setAttribute("id","open1");
-div_shift_base.setAttribute("style","display:none;clear:both;");
+div_shift_base.setAttribute('id','open1');
+div_shift_base.setAttribute('style','display:none;clear:both;');
 div_shift_base.appendChild(button_base);
 div_shift_base.appendChild(button_link1);
 div_shift_base.appendChild(button_link2);

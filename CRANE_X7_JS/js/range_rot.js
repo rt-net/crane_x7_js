@@ -1,25 +1,25 @@
 var div_shift_select = document.createElement('div');
-div_shift_select.setAttribute("id","open2");
-div_shift_select.setAttribute("style","display:none;clear:both;");
+div_shift_select.setAttribute('id','open2');
+div_shift_select.setAttribute('style','display:none;clear:both;');
 document.body.appendChild( div_shift_select );
 
 function range_html(id, max_range, min_range, RotIndex, style_top, style_left)
 {
 	var div = document.createElement('div');
-	div.setAttribute("class","link"+id);
+	div.setAttribute('class','link'+id);
 	var label = document.createElement('label');
 	if(id == 8)
-		label.textContent = "[E]";
+		label.textContent = '[E]';
 	else
-		label.textContent = "[" + id + "]";
+		label.textContent = '[' + id + ']';
 
 	label.style.cssText = 'vertical-align: middle; display: table-cell;';
 	var range = document.createElement('INPUT');
-	range.setAttribute("id","link"+id);
-	range.setAttribute("type","range");
-	range.setAttribute("min", min_range);
-	range.setAttribute("max", max_range);
-	range.setAttribute("value", RotIndex);
+	range.setAttribute('id','link'+id);
+	range.setAttribute('type','range');
+	range.setAttribute('min', min_range);
+	range.setAttribute('max', max_range);
+	range.setAttribute('value', RotIndex);
 	var target = document.getElementById('value');
 	var rangeValue = function (range, target) {
 		return function(evt){
@@ -37,7 +37,7 @@ function range_html(id, max_range, min_range, RotIndex, style_top, style_left)
 
 var div_select_shift = document.createElement('div');
 var select_shift = document.createElement('a');
-select_shift.setAttribute("style","cursor: pointer;");
+select_shift.setAttribute('style','cursor: pointer;');
 select_shift.textContent = 'range';
 var div_select_shift_top = 510;
 var div_select_shift_left = 300;
