@@ -10,7 +10,7 @@ exports.sendserialport = function(){
 	});
 	if(port != null){
 		portconnect = 1;
-		console.log("port connect");
+		console.log('port connect');
 	}
 }
 
