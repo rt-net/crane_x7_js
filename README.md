@@ -92,13 +92,13 @@ $ npm start
  `@`はモデルの回転
 
 ### ジョイント操作 `range`
-![54171118-a425ec80-44bc-11e9-92a5-7f1afc662f1b_](https://user-images.githubusercontent.com/12367951/54171622-61651400-44be-11e9-8a97-7ea57b66a071.jpg)
+![54171118-a425ec80-44bc-11e9-92a5-7f1afc662f1b_](https://user-images.githubusercontent.com/12367951/54171622-61651400-44be-11e9-8a97-7ea57b66a071.jpg)   
 #### モデル操作
  `スライドバー`を動かすことで対応する関節が動きます。
 
 
 ### モーション作成
-![54171118-a425ec80-44bc-11e9-92a5-7f1afc662f1b_1](https://user-images.githubusercontent.com/12367951/54171606-498d9000-44be-11e9-8626-9323362e7efc.jpg)  
+![54171118-a425ec80-44bc-11e9-92a5-7f1afc662f1b_1](https://user-images.githubusercontent.com/12367951/54171606-498d9000-44be-11e9-8626-9323362e7efc.jpg)     
 
  `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
  
@@ -140,7 +140,7 @@ $ sudo chmod a+rw /dev/ttyUSB0
 接続切断後はサーバを再起動して下さい.
 
 ### 実機動作
-![54171115-a2f4bf80-44bc-11e9-9c6e-b9ed1459db73](https://user-images.githubusercontent.com/12367951/54171540-0af7d580-44be-11e9-8742-c170717445f0.png)
+![54171115-a2f4bf80-44bc-11e9-9c6e-b9ed1459db73](https://user-images.githubusercontent.com/12367951/54171540-0af7d580-44be-11e9-8742-c170717445f0.png)   
 `copy`を押すと、`coping`に変わり実機の姿勢をトレース   
 `SET`:実機が画面上のモデルと同じ姿勢に移動   
 `ON`:トルクON  
