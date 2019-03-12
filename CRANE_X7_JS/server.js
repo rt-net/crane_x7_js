@@ -1,14 +1,14 @@
 var express	=	require('express');
-var app	=	express();
+var app		=	express();
 
 var http	=	require('http').Server(app);
 var async	=	require('async');
 var serial	=	require('./serial.js');
 
-var fs	=	require('fs');
-var io	=	require('socket.io')(http);
+var fs		=	require('fs');
+var io		=	require('socket.io')(http);
 
-var os	=	require('os');
+var os		=	require('os');
 
 app.use(express.static(__dirname));
 
@@ -51,8 +51,8 @@ io.on('connection', function(socket){
 				serial.bulkwriteTxPacket();
 				break;
 			case 'set':
-				var deg	=	new String(data.deg);
-				deg	=	deg.split(',');
+				var deg		=	new String(data.deg);
+				deg			=	deg.split(',');
 				for(var id=2;id<=9;id++)
 						serial.addParam(id,116,4,deg[id-2]);
 				serial.bulkwriteTxPacket();
