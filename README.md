@@ -118,6 +118,7 @@ http://****:8080
 
 ## 実機動作 `send`
 ### 実機に関して
+ブラウザで作成した動作を実機で動作させることができます.   
 実機は[CRANE-X7の製品ページ](https://www.rt-net.jp/products/crane-x7)を確認して下さい.   
 [![x7](https://www.rt-net.jp/wp-content/uploads/2018/06/img_crane-x7-06.png)](https://www.rt-net.jp/products/crane-x7)
 
@@ -155,8 +156,7 @@ $ sudo chmod a+rw /dev/ttyUSB0
 **実機のトルクがONの場合実機が動作します**   
 
 ## 注意事項
-
-__baudrate,IDの書き換えを行った場合、USBケーブルを抜いてデバイスの再接続を行ってください__   
+  
 __緊急停止としてキー入力(特殊キー抜く)を行うとトルクがOFFになります__
 
 ## License
