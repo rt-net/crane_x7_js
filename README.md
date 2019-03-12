@@ -78,8 +78,8 @@ $ npm start
 ブラウザを開いて [`http://localhost:8080/`](http://localhost:8080/) にアクセス、又はターミナル画面の[`http://localhost:8080/`](http://localhost:8080/)を右クリックするとCRANE_X7_JSが起動します。
 指定のIPアドレスに接続することでアプリケーションが起動します。
 
-![screenshot from 2019-03-08 14-31-00](https://user-images.githubusercontent.com/12367951/54010996-3d4ebd80-41b4-11e9-888c-3a59b645d5f9.png)
-![screenshot from 2019-03-08 14-31-15](https://user-images.githubusercontent.com/12367951/54010999-3f188100-41b4-11e9-96c3-32d2352dd74f.png)
+![window_image](https://github.com/rt-net/crane_x7_js/blob/image/img/window_image.png)
+![window](https://github.com/rt-net/crane_x7_js/blob/image/img/window.png)
 
 ## 使用方法 各種操作説明
 各ボタンを押すと要素が開きます。
@@ -92,13 +92,13 @@ $ npm start
  `@`はモデルの回転
 
 ### ジョイント操作 `range`
-![54171118-a425ec80-44bc-11e9-92a5-7f1afc662f1b_](https://user-images.githubusercontent.com/12367951/54171622-61651400-44be-11e9-8a97-7ea57b66a071.jpg)   
+![range](https://github.com/rt-net/crane_x7_js/blob/image/img/range.jpg)   
 #### モデル操作
  `スライドバー`を動かすことで対応する関節が動きます。
 
 
 ### モーション作成
-![54171118-a425ec80-44bc-11e9-92a5-7f1afc662f1b_1](https://user-images.githubusercontent.com/12367951/54171606-498d9000-44be-11e9-8626-9323362e7efc.jpg)     
+![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/slot.jpg)     
 
  `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
  
@@ -140,7 +140,7 @@ $ sudo chmod a+rw /dev/ttyUSB0
 接続切断後はサーバを再起動して下さい.
 
 ### 実機動作
-![54171115-a2f4bf80-44bc-11e9-9c6e-b9ed1459db73](https://user-images.githubusercontent.com/12367951/54171540-0af7d580-44be-11e9-8742-c170717445f0.png)   
+![send](https://github.com/rt-net/crane_x7_js/blob/image/img/send.png)   
 `copy`を押すと、`coping`に変わり実機の姿勢をトレース   
 `SET`:実機が画面上のモデルと同じ姿勢に移動   
 `ON`:トルクON  
