@@ -74,7 +74,7 @@ let deg 	=	[];
 var frame	=	0;
 var ref 	=	[];
 function MotionPlayBack(time,deg){
-	var date	=	$('[id=select]').val();
+	var data	=	$('[id=select]').val();
 	var goal_time	=	500;
 	if(data == null){
 		state.set	=	0;
