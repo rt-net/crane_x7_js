@@ -85,8 +85,8 @@ io.on('connection', function(socket){
 	});
 });
 
-var ip_port = getLocalAddress().ipv4;
-//var ip_port = 'localhost';
+//var ip_port = getLocalAddress().ipv4;
+var ip_port = 'localhost';
 http.listen(8080,ip_port, function(){
 	console.log('port * : 8080');
 	console.log('http://' + ip_port +':8080');
