@@ -79,7 +79,7 @@ function MotionPlayBack(time,deg){
 	if(data == null){
 		state.set	=	0;
 		state.move	=	0;
-		state.on	=	1;
+		state.on	=	0;
 		state.off	=	0;
 		socket.emit('send',state);
 		return;
@@ -100,7 +100,7 @@ function MotionPlayBack(time,deg){
 		}else{
 			state.set	=	0;
 			state.move	=	0;
-			state.on	=	1;
+			state.on	=	0;
 			state.off	=	0;
 			socket.emit('send',state);
 		}
@@ -228,6 +228,7 @@ socket.on('state',function(state){
 			$('[id=clear]').attr('disabled',true);
 			$('[id=clip]').attr('disabled',true);
 			$('[id=reset]').attr('disabled',true);
+			$('[id=copy]').attr('disabled',true);
 			$('.select').attr('disabled',true);
 		}else{
 			$('[id=move]').attr('disabled',false);
@@ -236,6 +237,7 @@ socket.on('state',function(state){
 			$('[id=clear]').attr('disabled',false);
 			$('[id=clip]').attr('disabled',false);
 			$('[id=reset]').attr('disabled',false);
+			$('[id=copy]').attr('disabled',false);
 			$('.select').attr('disabled',false);
 		}
 

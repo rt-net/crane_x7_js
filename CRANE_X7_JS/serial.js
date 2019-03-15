@@ -4,14 +4,14 @@ var port;
 var portconnect = 0;
 
 exports.sendserialport = function(){
-	dev = '/dev/ttyUSB0';
-	port = new SerialPort(dev, {
-		baudRate:3000000
-	});
-	if(port != null){
-		portconnect = 1;
-		console.log('port connect');
-	}
+    dev = '/dev/ttyUSB0';
+    port = new SerialPort(dev, {
+        baudRate:3000000
+    });
+    if(port != null){
+        portconnect = 1;
+        console.log('port connect');
+    }
 }
 
 exports.makedata = function(val){
@@ -125,9 +125,9 @@ function MAKEDWORD(a,b)
 
 function deg2value(deg)
 {
-	var value = 0;
-	value = (180 + Number(deg)) * 4096 / 360;
-	return value;
+    var value = 0;
+    value = (180 + Number(deg)) * 4096 / 360;
+    return value;
 }
 
 function value2deg(value)
@@ -195,14 +195,14 @@ function txPacket(txpacket)
 }
 
 function write(buf) {
-	if(portconnect == 1){
-    port.write( buf, function(err, results) {
-        if(err) {
-            console.log('Err: ' + err);
-            console.log('Results: ' + results);
-        }
-    });
-	}
+    if(portconnect == 1){
+        port.write( buf, function(err, results) {
+            if(err) {
+                console.log('Err: ' + err);
+                console.log('Results: ' + results);
+            }
+        });
+    }
 }
 
 exports.readRxPacket = function(ID, address, length, callback){
