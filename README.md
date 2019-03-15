@@ -1,6 +1,6 @@
 # CRANE_X7_JS
 
-CRANE_X7をWebブラウザで動かせるソフト
+CRANE_X7をNode.js,three.jsを使用してWebブラウザで動作できるサンプルです.   
 
 ## 開発環境
 
@@ -9,13 +9,13 @@ CRANE_X7をWebブラウザで動かせるソフト
 
 ## nodeのインストール
 
-本プログラムは[Node.js](https://nodejs.org/ja/)を使用しています。  
-[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)を使ってインストールするか、ソースからインストールします。
+本プログラムは[Node.js](https://nodejs.org/ja/)を使用しています.   
+[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)を使ってインストールするか、ソースからインストールします.   
 
 ### nodebrewを使ってインストール
 
-[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)はNode.jsのバージョン管理ツールです。パッケージマネージャのようにNode.jsのバージョンを切り替えて使うことができます。  
-nodebrewを使ってNode.js: 8.11.3 LTSをインストールする方法は以下の通りです。
+[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)はNode.jsのバージョン管理ツールです。パッケージマネージャのようにNode.jsのバージョンを切り替えて使うことができます.     
+nodebrewを使ってNode.js: 8.11.3 LTSをインストールする方法は以下の通りです.   
 
 ``` 
 $ sudo apt-get -y install curl
@@ -28,7 +28,7 @@ $ nodebrew use v8.11.3
 
 ### ソースからインストール
 
-Node.js: 8.11.3 LTSを[node-v8.11.3 source](https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz)からインストールする方法は以下の通りです。
+Node.js: 8.11.3 LTSを[node-v8.11.3 source](https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz)からインストールする方法は以下の通りです.   
 
 ``` 
 $ wget https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
@@ -43,7 +43,7 @@ $ sudo make install
 
 ### CRANE_X7_JSリポジトリのclone
 
-本リポジトリを `git clone` コマンドでダウンロードします。
+本リポジトリを `git clone` コマンドでダウンロードします.   
 
 ```
 $ git clone https://github.com/rt-net/CRANE_X7_JS.git 
@@ -51,7 +51,7 @@ $ git clone https://github.com/rt-net/CRANE_X7_JS.git
 
 ### npmパッケージのインストール
 
-本プログラムで使用する以下の4つのnpmパッケージをインストールします。
+本プログラムで使用する以下の4つのnpmパッケージをインストールします.   
 
 - serialport
 - socket.io
@@ -63,93 +63,100 @@ $ cd crane_x7_js/CRANE_X7_JS
 $ npm install
 ```
 
-コマンドを実行することで、必要なパッケージをインストールできます。
+コマンドを実行することで、必要なパッケージをインストールできます.   
 
 ## 起動方法
 
 ### プログラムの実行
-
+以下、コマンドを実行して、Webサーバを起動します.   
 ```
-$ npm start
+$ npm start   
+http://****:8080
 ```
 
 ### Webサーバに接続
 
-ブラウザを開いて [`http://localhost:8080/`](http://localhost:8080/) にアクセス、又はターミナル画面の[`http://localhost:8080/`](http://localhost:8080/)を右クリックするとCRANE_X7_JSが起動します。
-指定のIPアドレスに接続することでアプリケーションが起動します。
+端末に表示されるIPアドレス`http://****:8080`にブラウザから接続するとCRANE_X7のシミュレータ画面が表示されます.    
+この画面で動作の作成などが行えます.   
 
 ![window_image](https://github.com/rt-net/crane_x7_js/blob/image/img/window_image.png)
 ![window](https://github.com/rt-net/crane_x7_js/blob/image/img/window.png)
 
 ## 使用方法 各種操作説明
-各ボタンを押すと要素が開きます。
+各ボタンを押すと要素が開きます.   
 ### モデル変更 `color`
 ![color](https://github.com/rt-net/crane_x7_js/blob/image/img/color.png)
 #### 色変更
- 最上部(1~11)が各リンクの色を変更できます。
+ 最上部(1~11)が各リンクの色を変更できます.
 
 #### モデル回転
- `@`はモデルの回転
+ `@`でモデルが回転します.   
 
 ### ジョイント操作 `range`
 ![range](https://github.com/rt-net/crane_x7_js/blob/image/img/range.jpg)   
 #### モデル操作
- `スライドバー`を動かすことで対応する関節が動きます。
+ `スライドバー`を動かすことで対応する関節が動きます.
 
 
 ### モーション作成
 ![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/slot.jpg)     
 
- `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
+ - `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
  
- `#`:モデルが初期姿勢になる     
- `再生`:選択したデータを再生(**実機のトルクがONの場合実機が動作します**)   
- `loop`:チェックボックスにチェックすると、モーションをループ   
- ボックス内には、保存したデータが表示   
-  `DEL`:選択したデータの削除(Delキーでも可能)   
-  `ALL`:ボックス内のデータを全選択   
-  `clip`:現在の姿勢をデータに追加(選択状態のデータに上書き可能)   
-  `SAVE`:対応するスロットにデータを保存   
+ - `#`:モデルが初期姿勢に変化     
+ - `再生`:選択したデータを再生(**実機のトルクがONの場合実機が動作します**)   
+ - `loop`:チェックボックスにチェックすると、モーションをループ   
+          ボックス内には、保存したデータが表示   
+ - `DEL`:選択したデータの削除(Delキーでも可能)   
+ - `ALL`:ボックス内のデータを全選択   
+ - `clip`:現在の姿勢をデータに追加(選択状態のデータに上書き可能)   
+ - `SAVE`:対応するスロットにデータを保存   
+ 
+ データを選択して再生することで、ブラウザ及び実機で動作確認することが可能です.   
+ 
+ ![slot](https://s19.aconvert.com/convert/p3r68-cdx67/gdj1e-hmbg3.gif) 
 
 ## 実機動作 `send`
 ### 実機に関して
-[`CRANE-X7 カラー検討ページ`](https://www.rt-net.jp/CRANE-X7/index.html)
+ブラウザで作成した動作を実機で動作させることができます.   
+実機は[CRANE-X7の製品ページ](https://www.rt-net.jp/products/crane-x7)を確認して下さい.   
+[![x7](https://www.rt-net.jp/wp-content/uploads/2018/06/img_crane-x7-06.png)](https://www.rt-net.jp/products/crane-x7)
 
-### デバイス接続
 
-デバイスを接続して、別端末を開いて、以下の操作を行います。
+### 実機接続確認
 
-- デバイスが認識されているか確認します。
+デバイスを接続して、別端末を開いて、以下の操作を行います.   
+
+- USB接続   
+    [SMPS2Dynamixel](http://www.robotis-shop-jp.com/?act=shop_jp.goods_view&GS=1267&GC=GD0C0102)などの電源基盤と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
+
+- デバイスが認識されているか確認   
 
 ```
 $ ls /dev/ttyUSB*  
 ttyUSB0
 ```
 
-- 接続されたデバイスに書き込み読み込みの権限を渡します。
+- 接続されたデバイスの書き込み読み込み権限を設定   
 
 ```
 $ sudo chmod a+rw /dev/ttyUSB0
 ```
 
-### 実機接続
-
-1. USB接続
-    USBポートに[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続、電源も入れてください。  
-1. `connect` ボタンを押すと実機と接続   
+- `connect` ボタンを押すと実機と接続  
+接続が完了すると`connected`に変わります.   
 接続切断後はサーバを再起動して下さい.
 
 ### 実機動作
 ![send](https://github.com/rt-net/crane_x7_js/blob/image/img/send.png)   
-`copy`を押すと、`coping`に変わり実機の姿勢をトレース   
-`SET`:実機が画面上のモデルと同じ姿勢に移動   
-`ON`:トルクON  
-`OFF`:トルクOFF    
+- `copy`を押すと、`coping`に変わり実機の姿勢をトレース   
+- `SET`:実機が画面上のモデルと同じ姿勢に移動   
+- `ON`:トルクON  
+- `OFF`:トルクOFF    
 **実機のトルクがONの場合実機が動作します**   
 
 ## 注意事項
-
-__baudrate,IDの書き換えを行った場合、USBケーブルを抜いてデバイスの再接続を行ってください__   
+  
 __緊急停止としてキー入力(特殊キー抜く)を行うとトルクがOFFになります__
 
 ## License
