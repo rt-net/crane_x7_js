@@ -114,14 +114,13 @@ http://****:8080
  
  データを選択して再生することで、ブラウザ及び実機で動作確認することが可能です.   
  
- ![slot](https://s19.aconvert.com/convert/p3r68-cdx67/gdj1e-hmbg3.gif) 
+ ![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/demo.gif) 
 
 ## 実機動作 `send`
 ### 実機に関して
 ブラウザで作成した動作を実機で動作させることができます.   
 実機は[CRANE-X7の製品ページ](https://www.rt-net.jp/products/crane-x7)を確認して下さい.   
-[![x7](https://www.rt-net.jp/wp-content/uploads/2018/06/img_crane-x7-06.png)](https://www.rt-net.jp/products/crane-x7)
-
+[![x7](https://www.rt-net.jp/wp-content/uploads/2018/06/img_crane-x7-06-768x768.png)](https://www.rt-net.jp/products/crane-x7)
 
 ### 実機接続確認
 
