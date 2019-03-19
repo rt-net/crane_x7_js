@@ -79,7 +79,7 @@ io.on('connection', function(socket){
 					}]);
 				break;
 			case 'send':
-				if(!state.send) serial.sendserialport();
+				if(!state.send) serial.sendserialport(data.num);
 				break;
 		}
 	});

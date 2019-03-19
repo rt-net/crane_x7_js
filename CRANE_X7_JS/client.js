@@ -206,7 +206,8 @@ function copy_flag(){
 }
 
 function sendPort(){
-	SendCommand('send',port_connect);
+	var port_dev = document.getElementById('dev').value;
+	SendCommand('send',port_connect,port_dev);
 	state.send	=	port_connect;
 	socket.emit('send',state);
 }

@@ -208,6 +208,11 @@ button_send.onclick = function() {
 	}
 button_send.hidden = ui_hidden;
 
+var dev_textbox = document.createElement( 'input' );
+dev_textbox.setAttribute('value','/dev/ttyUSB0');
+dev_textbox.setAttribute('id','dev');
+dev_textbox.style.cssText = 'vertical-align: middle; display: block;';
+
 var fig_shift = document.createElement('div');
 var fig = document.createElement('a');
 fig.setAttribute('style','cursor: pointer;');
@@ -225,13 +230,14 @@ document.body.appendChild(fig_shift);
 
 var div_fig = document.createElement('div');
 div_fig.setAttribute('class','fig');
+div_fig.appendChild( dev_textbox );
 div_fig.appendChild( button_copy );
 div_fig.appendChild( button_send );
 div_fig.appendChild( button_set );
 div_fig.appendChild( button_on );
 div_fig.appendChild( button_off );
 //div_fig.appendChild( button_servo );
-div_fig.style.cssText = get_css(400, 20, 0xEEEEEE);
+div_fig.style.cssText = get_css(370, 20, 0xEEEEEE);
 document.body.appendChild(div_fig);
 
 var fig_tab = document.createElement('div');
