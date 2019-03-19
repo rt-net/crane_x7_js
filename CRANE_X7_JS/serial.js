@@ -20,7 +20,7 @@ exports.makedata = function(val){
 }
 
 exports.makepacket = function(val, len){
-    var data = new Buffer(len);
+    var data = Buffer.alloc(len);
     switch(len){
         case '1':
             data[0] = val;
@@ -136,8 +136,8 @@ function value2deg(value)
 }
 
 exports.pingPacket = function(ID){
-    var txpacket = new Buffer(10);
-    var rxpacket = new Buffer(14);
+    var txpacket = Buffer.alloc(10);
+    var rxpacket = Buffer.alloc(14);
 
     txpacket[4] = ID;
     txpacket[5] = 0x03;
@@ -149,8 +149,8 @@ exports.pingPacket = function(ID){
 
 exports.writeTxPacket = function(ID, address, length, val){
     var total_packet = 12 + length;
-    var txpacket = Buffer(total_packet);
-    var data = Buffer(length);
+    var txpacket = Buffer.alloc(total_packet);
+    var data = Buffer.alloc(length);
     switch(length){
         case 1:
             data[0] = val;
@@ -206,7 +206,7 @@ function write(buf) {
 }
 
 exports.readRxPacket = function(ID, address, length, callback){
-    var txpacket = new Buffer(14);
+    var txpacket = Buffer.alloc(14);
 
     txpacket[4] = ID;
     txpacket[5] = 7;
@@ -272,7 +272,7 @@ var length_list_ = [];
 var data_list_ = [];
 
 function bulkWriteTxOnly( param, param_length){
-    var txpacket = new Buffer(param_length + 10);
+    var txpacket = Buffer.alloc(param_length + 10);
 
     txpacket[4] = 254;
     txpacket[5] = LOBYTE(param_length + 3);
@@ -290,7 +290,7 @@ function makeParam(){
     for(var i=0; i<id_list_.length; i++)
         param_length += 1 + 2 + 2 + length_list_[id_list_[i]];
 
-    var param = new Buffer(param_length);
+    var param = Buffer.alloc(param_length);
 
     var idx = 0;
 	var id = [];
@@ -310,10 +310,10 @@ function makeParam(){
     bulkWriteTxOnly(param, param_length);
 }
 
-var id_list_ = new Buffer(0);
-var address_list_ = new Buffer(0);
-var length_list_ = new Buffer(0);
-var data_list_ = new Buffer(0);
+var id_list_ = Buffer.alloc(0);
+var address_list_ = Buffer.alloc(0);
+var length_list_ = Buffer.alloc(0);
+var data_list_ = Buffer.alloc(0);
 
 module.exports.addParam = function(ID, address, length, val){
 	id_list_.push(ID);
@@ -353,7 +353,7 @@ module.exports.bulkwriteTxPacket = function(){
 }
 
 function syncmakeParam(){
-	var param = new Buffer(8);
+	var param = Buffer.alloc(8);
 	for(var i = 0; i < param.length; i++){
 		param[i] = i+2;
 	}
@@ -361,7 +361,7 @@ function syncmakeParam(){
 }
 
 exports.syncreadRxPacket = function(address, length, callback){
-    var txpacket = new Buffer(14+8);
+    var txpacket = Buffer.alloc(14+8);
 
     txpacket[4] = 0xFE;
     txpacket[5] = 7+8;
