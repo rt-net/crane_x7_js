@@ -43,6 +43,13 @@ var ref_data = [Link1RotIndex, Link2RotIndex, Link3RotIndex, Link4RotIndex, Link
 
 var off_fig = [0,-35, 0,-145, 0, 0, 0, 90];
 
+var color_form = 69;
+var range_form = 210;
+var send_form = 150;
+var slot_form = 140;
+var form_pos = 85;
+var diff_pos = 0;
+
 var loader = new THREE.FileLoader();
 var player = new APP.Player();
 
@@ -97,6 +104,16 @@ var get_css = function( top, left, back_color_dec ) {
 	if( back_color_dec == COLOR_BLACK ){
 		text_color = COLOR_WHITE;
 	}
+	var res_css = ('padding: 12px 14px; color: #' + text_color.toString(16) + '; border: 1px solid #000000; border-radius: 4px; text-decoration: none; background-color: ' + back_color_rgb + ';');
+	return res_css;
+};
+
+var get_css_form = function( top, left, back_color_dec ) {
+	var back_color_rgb = '#' +  back_color_dec.toString(16) + ';';
+	var text_color = COLOR_BLACK;
+	if( back_color_dec == COLOR_BLACK ){
+		text_color = COLOR_WHITE;
+	}
 	var res_css = ('position: absolute; top: ' + top + 'px; left: ' + left + 'px; padding: 12px 14px; color: #' + text_color.toString(16) + '; border: 1px solid #000000; border-radius: 4px; text-decoration: none; background-color: ' + back_color_rgb + '; display: table;');
 	return res_css;
 };
@@ -126,122 +143,3 @@ var get_css_range = function( top, left) {
 	return res_css;
 };
 
-var button_on = document.createElement( 'button' );
-button_on.setAttribute('id', 'on');
-button_on.textContent = 'ON';
-button_on.hidden = ui_hidden;
-button_on.onclick = function(){
-	button_servo.textContent = '|'
-	button_copy_text = 'copy';
-	button_copy.textContent = button_copy_text;
-	ser = 0;
-}
-
-var button_off = document.createElement( 'button' );
-button_off.setAttribute('id', 'off');
-button_off.textContent = 'OFF';
-button_off.hidden = ui_hidden;
-button_off.onclick = function(){
-	button_servo.textContent = 'o'
-	ser = 1;
-}
-
-var button_servo = document.createElement( 'button' );
-button_servo.setAttribute('id','servo');
-button_servo.textContent = 'o';
-var ser = 1;
-button_servo.setAttribute('value',ser);
-button_servo.onclick = function(){
-	button_servo.setAttribute('value',ser);
-	if(port_connect == 1){
-		if(ser == 1){
-			button_servo.textContent = '|';
-			ser = 0;
-		}else{
-			button_servo.textContent = 'o';
-			var data = off_fig;
-			button_copy_text = 'copy';
-			button_copy.textContent = button_copy_text;
-			button_set.setAttribute('val',data);
-			ser = 1;
-		}
-	}
-}
-button_servo.hidden = ui_hidden;
-
-var button_set = document.createElement( 'button' );
-button_set.setAttribute('id', 'set');
-button_set.textContent = 'SET';
-button_set.setAttribute('val',ref_data);
-button_set.onclick = function() {
-	$('[id=set]').attr('disabled',true);
-	$('[id=on]').attr('disabled',true);
-	$('[id=off]').attr('disabled',true);
-	$('[id=move]').attr('disabled',true);
-	var data = [Link1RotIndex, Link2RotIndex, Link3RotIndex, Link4RotIndex, Link5RotIndex, Link6RotIndex, Link7RotIndex, Link8RotIndex];
-	button_set.setAttribute('val',data);
-}
-button_set.hidden = ui_hidden;
-
-var button_copy = document.createElement( 'button' );
-button_copy.setAttribute('id', 'copy');
-var button_copy_text = 'copy'
-button_copy.textContent = button_copy_text;
-button_copy.onclick = function() {
-	if( button_copy_text == 'copying' ){
-		button_copy_text = 'copy';
-	}else{
-		button_copy_text = 'copying';
-	}
-	button_copy.textContent = button_copy_text;
-}
-button_copy.hidden = ui_hidden;
-
-var button_send = document.createElement( 'button' );
-button_send.setAttribute('id', 'send');
-button_send.textContent = 'connect';
-var port_connect = 0;
-button_send.onclick = function() {
-	port_connect = 1;
-	button_send.textContent = 'connected';
-	console.log('send port');
-	}
-button_send.hidden = ui_hidden;
-
-var dev_textbox = document.createElement( 'input' );
-dev_textbox.setAttribute('value','/dev/ttyUSB0');
-dev_textbox.setAttribute('id','dev');
-dev_textbox.style.cssText = 'vertical-align: middle; display: block;';
-
-var fig_shift = document.createElement('div');
-var fig = document.createElement('a');
-fig.setAttribute('style','cursor: pointer;');
-fig.textContent = 'send';
-var fig_shift_top = 560;
-var fig_shift_left = 300;
-fig_shift.style.cssText = get_css_base(fig_shift_top, fig_shift_left);
-fig_shift.onclick = function(){
-	obj=document.getElementById('open3').style; 
-	obj.display=(obj.display=='none')?'inline':'none';
-	fig_shift.style.backgroundColor = (obj.display=='none')?'#EEEEEE':'#CCCCCC';
-}
-fig_shift.appendChild(fig);
-document.body.appendChild(fig_shift);
-
-var div_fig = document.createElement('div');
-div_fig.setAttribute('class','fig');
-div_fig.appendChild( dev_textbox );
-div_fig.appendChild( button_copy );
-div_fig.appendChild( button_send );
-div_fig.appendChild( button_set );
-div_fig.appendChild( button_on );
-div_fig.appendChild( button_off );
-//div_fig.appendChild( button_servo );
-div_fig.style.cssText = get_css(370, 20, 0xEEEEEE);
-document.body.appendChild(div_fig);
-
-var fig_tab = document.createElement('div');
-fig_tab.setAttribute('id','open3');
-fig_tab.setAttribute('style','display:none;clear:both;');
-fig_tab.appendChild(div_fig);
-document.body.appendChild(fig_tab);

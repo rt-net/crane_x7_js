@@ -1,36 +1,65 @@
-function select_html()
-{
+var div_shift_slot = document.createElement('div');
+var shift = document.createElement('a');
+var shift_img = document.createElement('img');
+shift_img.setAttribute('type','image');
+shift_img.setAttribute('src','js/img/slot.png');
+shift_img.setAttribute('alt','slot');
+shift_img.setAttribute('width','35');
+shift_img.setAttribute('height','35');
+div_shift_slot.appendChild(shift_img);
+//	shift.setAttribute('style','cursor: pointer;');
+//	shift.textContent = 'frame';
+	var div_shift_slot_top = 20;
+	var div_shift_slot_left = 180;
+	div_shift_slot.style.cssText = get_css_base(div_shift_slot_top, div_shift_slot_left);
+	div_shift_slot.onclick = function(){
+		obj=document.getElementById('open4').style; 
+		obj.display=(obj.display=='none')?'inline':'none';
+		div_shift_slot.style.backgroundColor = (obj.display=='none')?'#EEEEEE':'#CCCCCC';
+		if(obj.display === 'none') {
+			slot_obj_pos = parseInt(document.getElementById('slot_list').style.top);
+			test(slot_obj_pos, slot_form);
+			diff_pos -= slot_form;
+		}else {
+			div.style.cssText = get_css_module(form_pos+diff_pos,20);
+			diff_pos += slot_form;
+		}
+	}
+	div_shift_slot.appendChild(shift);
+	document.body.appendChild(div_shift_slot);
+
 	var div = document.createElement('div');
 	div.setAttribute('class','select');
-	
+	div.setAttribute('id','slot_list');
+
 	var label = document.createElement('label');
 	label.setAttribute('for','select');
 	label.textContent = 'slot:';
 	label.style.cssText = 'vertical-align: middle; display: inline;';
-	
+
 	var button1 = document.createElement('button');
 	button1.setAttribute('id','slot');
 	button1.setAttribute('value','1');
 	button1.textContent = '1';
 	button1.style.cssText = 'vertical-align: middle; display: inline; padding: 2px 11px; background-color: #CCCCCC;';
-	
+
 	var button2 = document.createElement('button');
 	button2.setAttribute('id','slot');
 	button2.setAttribute('value','2');
 	button2.textContent = '2';
 	button2.style.cssText = 'vertical-align: middle; display: inline;';
-	
+
 	var button3 = document.createElement('button');
 	button3.setAttribute('id','slot');
 	button3.setAttribute('value','3');
 	button3.textContent = '3';
 	button3.style.cssText = 'vertical-align: middle; display: inline;';
-	
+
 	var all_selected = document.createElement('button');
 	all_selected.setAttribute('id','slot');
 	all_selected.textContent = 'ALL';
 	all_selected.style.cssText = 'vertical-align: middle; display: inline;';
-	
+
 	var button_save = document.createElement('button');
 	button_save.setAttribute('id','save');
 	button_save.textContent = 'SAVE';
@@ -60,18 +89,18 @@ function select_html()
 	text_list.setAttribute('id', 'select');
 	text_list.setAttribute('size', '3');
 	$.get('data/out1.txt',function(data){
-		data = data.split(/,|\n/);
-		var step = data[0];
-		for(var i=1; i<=data.length;i++){
+			data = data.split(/,|\n/);
+			var step = data[0];
+			for(var i=1; i<=data.length;i++){
 			if(i%8 == 0){
-				$('#select').append($('<option>').html('ROT:'+step).val(step));
-				step = [];
+			$('#select').append($('<option>').html('ROT:'+step).val(step));
+			step = [];
 			}else{
-				step = step + ',';
+			step = step + ',';
 			}
 			step = step + data[i];
-		}
-	});
+			}
+			});
 	text_list.style.cssText = 'vertical-align: middle; display: block;';
 	text_list.onchange = function() {
 		var input = $('#select > option:selected').val();
@@ -120,7 +149,7 @@ function select_html()
 	div.appendChild( button3 );
 	div.appendChild( button_reset );
 	div.appendChild( button_move );
-	
+
 	div_loop.appendChild( label );
 	div_loop.appendChild( checkbox );
 	div.appendChild( div_loop );
@@ -129,15 +158,21 @@ function select_html()
 	div.appendChild( all_selected );
 	div.appendChild( button_clip );
 	div.appendChild( button_save );
+	div.setAttribute('id', 'slot_list');
 
-	div.style.cssText = get_css_module(460,20);
+	div.style.cssText = get_css_module(form_pos,20);
 
-	document.body.appendChild( div );
-	$('.select').on('click touchend', function(event){
-		if(!$(event.target).closest(text_list).length && !$(event.target).closest(all_selected).length && !$(event.target).closest(button_move).length && !$(event.target).closest(div_loop).length){
+	var div_shift_slot_base = document.createElement('div');
+	div_shift_slot_base.setAttribute('id','open4');
+	div_shift_slot_base.setAttribute('style','display:none;clear:both;');
+	div_shift_slot_base.appendChild( div );
+	document.body.appendChild( div_shift_slot_base );
+
+	$('.select').click(function(event){
+			if(!$(event.target).closest(text_list).length && !$(event.target).closest(all_selected).length && !$(event.target).closest(button_move).length && !$(event.target).closest(div_loop).length){
 			$('#select option').attr('selected', false);
-		}
-	});
+			}
+			});
 	button1.onclick = function()
 	{
 		button1.style.cssText = 'padding: 2px 11px; background-color: #CCCCCC;';
@@ -146,18 +181,18 @@ function select_html()
 		$('#select').children().remove();
 		$('#slot').val(1);
 		$.get('data/out1.txt',function(data){
-			data = data.split(/,|\n/);
-			var step = data[0];
-			for(var i=1; i<=data.length;i++){
+				data = data.split(/,|\n/);
+				var step = data[0];
+				for(var i=1; i<=data.length;i++){
 				if(i%8 == 0){
-					$('#select').append($('<option>').html('ROT:'+step).val(step));
-					step = [];
+				$('#select').append($('<option>').html('ROT:'+step).val(step));
+				step = [];
 				}else{
-					step = step + ',';
+				step = step + ',';
 				}
 				step = step + data[i];
-			}
-		});
+				}
+				});
 	}
 	button2.onclick = function()
 	{
@@ -167,18 +202,18 @@ function select_html()
 		$('#slot').val(2);
 		$('#select').children().remove();
 		$.get('data/out2.txt',function(data){
-			data = data.split(/,|\n/);
-			var step = data[0];
-			for(var i=1; i<=data.length;i++){
+				data = data.split(/,|\n/);
+				var step = data[0];
+				for(var i=1; i<=data.length;i++){
 				if(i%8 == 0){
-					$('#select').append($('<option>').html('ROT:'+step).val(step));
-					step = [];
+				$('#select').append($('<option>').html('ROT:'+step).val(step));
+				step = [];
 				}else{
-					step = step + ',';
+				step = step + ',';
 				}
 				step = step + data[i];
-			}
-		});
+				}
+				});
 	}
 	button3.onclick = function()
 	{
@@ -188,18 +223,18 @@ function select_html()
 		$('#slot').val(3);
 		$('#select').children().remove();
 		$.get('data/out3.txt',function(data){
-			data = data.split(/,|\n/);
-			var step = data[0];
-			for(var i=1; i<=data.length;i++){
+				data = data.split(/,|\n/);
+				var step = data[0];
+				for(var i=1; i<=data.length;i++){
 				if(i%8 == 0){
-					$('#select').append($('<option>').html('ROT:'+step).val(step));
-					step = [];
+				$('#select').append($('<option>').html('ROT:'+step).val(step));
+				step = [];
 				}else{
-					step = step + ',';
+				step = step + ',';
 				}
 				step = step + data[i];
-			}
-		});
+				}
+				});
 	}
 	button_move.onclick = function()
 	{
@@ -223,16 +258,13 @@ function select_html()
 		var input = $('#select').val();
 	}
 	$(window).keydown(function(e)
-	{
-		if(e.keyCode == 46)
+			{
+			if(e.keyCode == 46)
 			$('#select > option:selected').remove();
-		else if(65 < e.keyCode && e.keyCode < 90)
+			else if(65 < e.keyCode && e.keyCode < 90)
 			servoOFF();
-	});
+			});
 	button_clear.onclick = function()
 	{
 		$('#select > option:selected').remove();
 	}
-}
-
-select_html();

@@ -96,29 +96,46 @@ function button_replace() {
 	}
 	button_pause.style.cssText = get_css(button_pause_top,button_pause_left,0xEEEEEE);
 
-	div_shift_top = 460;
-	div_shift_left = 300;
-	if( window.innerHeight < 600 ){
-		div_shift_top = 460;
-		div_shift_left = 250;
-	}
-	div_shift.style.cssText = get_css_base(div_shift_top,div_shift_left);
+//	div_shift_top = 460;
+//	div_shift_left = 300;
+//	if( window.innerHeight < 600 ){
+//		div_shift_top = 460;
+//		div_shift_left = 250;
+//	}
+//	div_shift.style.cssText = get_css_base(div_shift_top,div_shift_left);
 
-	div_select_shift_top = 510;
-	div_select_shift_left = 300;
-	if( window.innerHeight < 600 ){
-		div_select_shift_top = 460;
-		div_select_shift_left = 310;
-	}
-	div_select_shift.style.cssText = get_css_base(div_select_shift_top,div_select_shift_left);
+//	div_select_shift_top = 510;
+//	div_select_shift_left = 300;
+//	if( window.innerHeight < 600 ){
+//		div_select_shift_top = 460;
+//		div_select_shift_left = 310;
+//	}
+//	div_select_shift.style.cssText = get_css_base(div_select_shift_top,div_select_shift_left);
+//
+//	fig_shift_top = 560;
+//	fig_shift_left = 300;
+//	if( window.innerHeight < 600 ){
+//		fig_shift_top = 510;
+//		fig_shift_left = 250;
+//	}
+//	fig_shift.style.cssText = get_css_base(fig_shift_top, fig_shift_left);
+}
 
-	fig_shift_top = 560;
-	fig_shift_left = 300;
-	if( window.innerHeight < 600 ){
-		fig_shift_top = 510;
-		fig_shift_left = 250;
-	}
-	fig_shift.style.cssText = get_css_base(fig_shift_top, fig_shift_left);
+function test(pos, diff){
+	color_obj = parseInt(document.getElementById('color').style.top);
+	range_obj = parseInt(document.getElementById('range_obj').style.top);
+	slot_obj = parseInt(document.getElementById('slot_list').style.top);
+	send_obj = parseInt(document.getElementById('send_fig').style.top);
+
+	if( pos < color_obj) color_obj -= diff;
+	if( pos < range_obj) range_obj -= diff;
+	if( pos < slot_obj) slot_obj -= diff;
+	if( pos < send_obj) send_obj -= diff;
+
+	color_select.style.cssText = get_css_form(color_obj, 20, 0xEEEEEE);
+	main_div.style.cssText = get_css_form(range_obj, 20, 0xEEEEEE);
+	div.style.cssText = get_css_module(slot_obj,20);
+	div_fig.style.cssText = get_css_form(send_obj, 20, 0xEEEEEE);
 }
 
 function set_data(i, num){

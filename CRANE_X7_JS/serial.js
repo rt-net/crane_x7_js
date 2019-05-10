@@ -3,8 +3,8 @@ var SerialPort = require('serialport');
 var port;
 var portconnect = 0;
 
-exports.sendserialport = function(){
-    dev = '/dev/ttyUSB0';
+exports.sendserialport = function(port_path){
+    dev = port_path;
     port = new SerialPort(dev, {
         baudRate:3000000
     });
@@ -227,7 +227,7 @@ exports.rxPacket = function(id, length, callback)
 	if(portconnect == 1){
 	port.once('data', function(input){
 		port.setMaxListeners(100);
-        var inputdata = Buffer(input);
+        var inputdata = Buffer.alloc(input);
         var dpacket = inputdata.length;
 		if(dpacket != length) {
 			return;
@@ -320,7 +320,7 @@ module.exports.addParam = function(ID, address, length, val){
     address_list_[ID] = address;
     length_list_[ID] = length;
     data_list_[ID] = [];
-    var data = Buffer(length);
+    var data = Buffer.alloc(length);
     switch(length){
         case 1:
             data[0] = val;

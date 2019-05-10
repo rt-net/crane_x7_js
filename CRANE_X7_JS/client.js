@@ -37,9 +37,51 @@ function servoOFF(){
 	SendCommand('off','0');
 }
 
-function servoSET_delay(time, deg){
+function text_data(){
+	$.get('copy.txt',function(data, err){
+		var frame = data.split('\n');
+		Read(frame[0].split(','));
+		setTimeout(function(){
+			frame_data(1,frame);
+		},4000);
+	})
+}
+
+function frame_data(frame_num,frame){
+	if(frame_num >= frame.length-2){
+		state.set	=	0;
+		state.move	=	0;
+		state.on	=	0;
+		state.off	=	0;
+		socket.emit('send',state);
+		var loop	=	$('[id=loop]').prop('checked');
+		if(loop){
+			text_data();
+		}
+		return;
+	}else{
+		frame_num++;
+	}
+	var num = frame[frame_num].split(',');
+
+	for(var j=0;j<num.length;j++){
+		set_data(j,num[j]);
+	}
+	SendCommand('set',num);
+	state.move	=	1;
+	state.set	=	1;
+	state.on	=	1;
+	state.off	=	0;
+	socket.emit('send',state);
+
+	setTimeout(function(){
+		frame_data(frame_num,frame)
+	},20);
+}
+
+function servoSET_delay(time, deg, goal){
 	copyflag	=	0;
-	var goal	=	$('[id=set]').attr('val').split(',');
+	//var goal	=	$('[id=set]').attr('val').split(',');
 	var goal_time	=	1000;
 
 	if(time > goal_time){
@@ -66,7 +108,7 @@ function servoSET_delay(time, deg){
 	socket.emit('send',state);
 
 	setTimeout(function(){
-		servoSET_delay(time+10, deg);
+		servoSET_delay(time+10, deg, goal);
 	},20);
 }
 
@@ -84,7 +126,6 @@ function MotionPlayBack(time,deg){
 		socket.emit('send',state);
 		return;
 	}
-
 
 	if(time > goal_time){
 		time	=	0;
@@ -132,7 +173,9 @@ function MotionPlayBack(time,deg){
 function CopyPlay(){
 	if(copyflag == 0) return;
 
-	SendCommand('copy',deg);
+	var save	=	$('[id=copybox]').prop('checked');
+
+	SendCommand('copy', deg, save);
 
 	socket.once('read', function(ref){
 		set_list(ref);
@@ -144,15 +187,16 @@ function CopyPlay(){
 }
 
 var read_count	=	0;
-function Read(){
+function Read(goal){
 	if(read_count >= 2){
 		if(deg.length != 8){
 			deg	=	get_rot_data();
 		}
-		servoSET_delay(0, deg);
+		servoSET_delay(0, deg, goal);
 		read_count	=	0;
 		return;
 	}
+	if(goal.length != 8) return;
 
 	SendCommand('copy',deg);
 	socket.once('read', function(ref){
@@ -162,7 +206,7 @@ function Read(){
 	});
 
 	setTimeout(function(){
-		Read();
+		Read(goal);
 	},20);
 }
 
@@ -223,23 +267,13 @@ socket.on('state',function(state){
 			$('[id=set]').attr('disabled',false);
 		}
 		if(state.move){
-			$('[id=move]').attr('disabled',true);
-			$('[id=save]').attr('disabled',true);
-			$('[id=slot]').attr('disabled',true);
-			$('[id=clear]').attr('disabled',true);
-			$('[id=clip]').attr('disabled',true);
-			$('[id=reset]').attr('disabled',true);
+			$('[id=copy_move]').prop('disabled',true);
 			$('[id=copy]').attr('disabled',true);
-			$('.select').attr('disabled',true);
+			$('#slot_list').children().prop('disabled', true);
 		}else{
-			$('[id=move]').attr('disabled',false);
-			$('[id=save]').attr('disabled',false);
-			$('[id=slot]').attr('disabled',false);
-			$('[id=clear]').attr('disabled',false);
-			$('[id=clip]').attr('disabled',false);
-			$('[id=reset]').attr('disabled',false);
+			$('[id=copy_move]').prop('disabled',false);
 			$('[id=copy]').attr('disabled',false);
-			$('.select').attr('disabled',false);
+			$('#slot_list').children().prop('disabled', false);
 		}
 
 		if(state.on){
@@ -280,9 +314,13 @@ function servoTorque(){
 $(function(){
 	$('[id=on]').click(servoON);
 	$('[id=off]').click(servoOFF);
-	$('[id=set]').click(function(){Read();});
+	$('[id=set]').click(function(){
+	var goal	=	$('[id=set]').attr('val').split(',');
+		Read(goal);
+	});
 	$('[id=move]').click(function(){Move();});
 	$('[id=copy]').click(copy_flag);
+	$('[id=copy_move]').click(text_data);
 	$('[id=send]').click(sendPort);
 	$('[id=save]').click(savetext);
 	$('[id=servo]').click(servoTorque);

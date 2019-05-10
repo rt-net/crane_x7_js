@@ -21,8 +21,11 @@ var state = {
 	off	:	0,
 	send	:	0,
 	set	:	0,
-	move	:	0
+	move	:	0,
+	copy	:	0
 };
+var copy_data = String();
+fs.appendFileSync('copy.txt','0');
 
 io.on('connection', function(socket){
 	console.log('connected');
@@ -65,6 +68,7 @@ io.on('connection', function(socket){
 				}
 				var slot	=	'data/' + 'out'+data.num+'.txt';
 				fs.writeFileSync(slot,text);
+				break;
 			case 'copy':
 				async.series([
 					function(callback){
@@ -73,6 +77,29 @@ io.on('connection', function(socket){
 					},
 					function(callback){
 						serial.rxPacket(0, 120, function(result){
+							var text = String();
+							if(!data.num) {
+								if(state.copy) {
+									fs.appendFile('copy.txt',copy_data,function(err){
+										if(err){
+											console.log('append err');
+											throw err;
+										}
+									});
+								}
+							}else {
+								if(!state.copy) {
+									fs.unlink('copy.txt', function(err){
+										copy_data = String();
+										if(err){
+											console.log('unlink err');
+											throw err;
+										}
+									});
+								}
+								copy_data += String(result + '\n');
+							}
+							state.copy = data.num;
 							socket.emit('read', result);
 						});
 						callback(null);
