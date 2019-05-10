@@ -227,7 +227,7 @@ exports.rxPacket = function(id, length, callback)
 	if(portconnect == 1){
 	port.once('data', function(input){
 		port.setMaxListeners(100);
-        var inputdata = Buffer.alloc(input);
+        var inputdata = Buffer(input);
         var dpacket = inputdata.length;
 		if(dpacket != length) {
 			return;
@@ -320,7 +320,7 @@ module.exports.addParam = function(ID, address, length, val){
     address_list_[ID] = address;
     length_list_[ID] = length;
     data_list_[ID] = [];
-    var data = Buffer.alloc(length);
+    var data = Buffer(length);
     switch(length){
         case 1:
             data[0] = val;
