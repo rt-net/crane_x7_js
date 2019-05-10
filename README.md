@@ -79,13 +79,13 @@ http://****:8080
 端末に表示されるIPアドレス`http://****:8080`にブラウザから接続するとCRANE_X7のシミュレータ画面が表示されます.    
 この画面で動作の作成などが行えます.   
 
-![window_image](https://github.com/rt-net/crane_x7_js/blob/image/img/window_image.png)
-![window](https://github.com/rt-net/crane_x7_js/blob/image/img/window.png)
+![window_image](https://user-images.githubusercontent.com/12367951/56798457-b7fd9600-6851-11e9-9bbc-5e06732c1d89.png)
+![window](https://user-images.githubusercontent.com/12367951/56798459-ba5ff000-6851-11e9-8d9a-c06a72cf3845.png)
 
 ## 使用方法 各種操作説明
 各ボタンを押すと要素が開きます.   
 ### モデル変更 `color`
-![color](https://github.com/rt-net/crane_x7_js/blob/image/img/color.png)
+![color](https://user-images.githubusercontent.com/12367951/56851031-5a4a7600-6945-11e9-86fc-2fe8d946da22.png)
 #### 色変更
  最上部(1~11)が各リンクの色を変更できます.
 
@@ -93,13 +93,13 @@ http://****:8080
  `@`でモデルが回転します.   
 
 ### ジョイント操作 `range`
-![range](https://github.com/rt-net/crane_x7_js/blob/image/img/range.jpg)   
+![range](https://user-images.githubusercontent.com/12367951/56851029-5a4a7600-6945-11e9-8480-a0114f662f30.png)   
 #### モデル操作
  `スライドバー`を動かすことで対応する関節が動きます.
 
 
 ### モーション作成
-![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/slot.jpg)     
+![slot](https://user-images.githubusercontent.com/12367951/56851033-5ae30c80-6945-11e9-8c58-d59e0d5cb785.png)     
 
  - `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
  
@@ -147,12 +147,23 @@ $ sudo chmod a+rw /dev/ttyUSB0
 接続切断後はサーバを再起動して下さい.
 
 ### 実機動作
-![send](https://github.com/rt-net/crane_x7_js/blob/image/img/send.png)   
+![send](https://user-images.githubusercontent.com/12367951/56851032-5ae30c80-6945-11e9-9747-e7210e2739e9.png)   
+- `port`にport名を入力することで特定のデバイスに接続可能   
 - `copy`を押すと、`coping`に変わり実機の姿勢をトレース   
 - `SET`:実機が画面上のモデルと同じ姿勢に移動   
 - `ON`:トルクON  
 - `OFF`:トルクOFF    
+- `再生`:教示保存したデータを再生
+- `教示`:実機でトレースした動きを保存
+- `RESET`:ブラウザ上のモデルを初期姿勢に変更
 **実機のトルクがONの場合実機が動作します**   
+## 教示再生手順
+1. 実機をトルクOFF状態にし、`copy`を実行
+2. `coping`状態中に、教示ボタンを押すことで動作の保存を開始
+3. もう一度教示ボタンを押すことで動作の保存を終了
+4. 再生を押すことで、教示した動作を実行
+
+[デモ](https://youtu.be/3mZW4eVuI-c)
 
 ## 注意事項
   
