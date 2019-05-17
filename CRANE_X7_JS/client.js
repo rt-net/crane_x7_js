@@ -263,43 +263,43 @@ function sendPort(){
 
 //serverë§Ç≈ì¡íËÇÃèÛë‘Çêßå¿(ëΩêlêîÇ≈ÇÃëÄçÏêßå¿)
 socket.on('state',function(state){
-        if(state.send){
-            document.getElementById('send').innerText = 'connected';
-            $('[id=send]'       ).attr('disabled',true);
-        }
+    if(state.send){
+        document.getElementById('send').innerText = 'connected';
+        $('[id=send]'       ).attr('disabled',true);
+    }
 
-        if(state.set){
-            $('[id=set]'        ).prop('disabled',true);
-        }else{
-            $('[id=set]'        ).attr('disabled',false);
-        }
+    if(state.set){
+        $('[id=set]'        ).prop('disabled',true);
+    }else{
+        $('[id=set]'        ).attr('disabled',false);
+    }
 
-        if(state.move){
-            $('[id=copy_move]'  ).prop('disabled',true);
-            $('[id=copy]'       ).attr('disabled',true);
-            $('#slot_list'      ).children().prop('disabled', true);
-        }else{
-            $('[id=copy_move]'  ).prop('disabled',false);
-            $('[id=copy]'       ).attr('disabled',false);
-            $('#slot_list'      ).children().prop('disabled', false);
-        }
+    if(state.move){
+        $('[id=copy_move]'  ).prop('disabled',true);
+        $('[id=copy]'       ).attr('disabled',true);
+        $('#slot_list'      ).children().prop('disabled', true);
+    }else{
+        $('[id=copy_move]'  ).prop('disabled',false);
+        $('[id=copy]'       ).attr('disabled',false);
+        $('#slot_list'      ).children().prop('disabled', false);
+    }
 
-        if(state.on){
-            $('[id=on]'         ).prop('disabled',true);
-            $('[id=copy]'       ).prop('disabled',true);
-            document.getElementById('copy').innerText = 'copy';
-            copyflag = 1;
-            copy_flag();
-        }else{
-            $('[id=on]'         ).prop('disabled',false);
-        }
+    if(state.on){
+        $('[id=on]'         ).prop('disabled',true);
+        $('[id=copy]'       ).prop('disabled',true);
+        document.getElementById('copy').innerText = 'copy';
+        copyflag = 1;
+        copy_flag();
+    }else{
+        $('[id=on]'         ).prop('disabled',false);
+    }
 
-        if(state.off){
-            $('[id=off]'        ).prop('disabled',true);
-            $('[id=copy]'       ).prop('disabled',false);
-        }else{
-            $('[id=off]'        ).prop('disabled',false);
-        }
+    if(state.off){
+        $('[id=off]'        ).prop('disabled',true);
+        $('[id=copy]'       ).prop('disabled',false);
+    }else{
+        $('[id=off]'        ).prop('disabled',false);
+    }
 });
 
 function savetext(){
