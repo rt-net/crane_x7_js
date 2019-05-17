@@ -4,8 +4,8 @@ var port;
 var portconnect = 0;
 
 exports.sendserialport = function(port_path){
-    dev = port_path;
-    port = new SerialPort(dev, {
+    dev     =   port_path;
+    port    =   new SerialPort(dev, {
         baudRate:3000000
     });
     if(port != null){
@@ -17,28 +17,6 @@ exports.sendserialport = function(port_path){
 exports.makedata = function(val){
     var pos =  deg2value(Number(val));
     return pos;
-}
-
-exports.makepacket = function(val, len){
-    var data = Buffer.alloc(len);
-    switch(len){
-        case '1':
-            data[0] = val;
-    return data;
-            break;
-        case '2':
-            data[0] = LOBYTE(val);
-            data[1] = HIBYTE(val);
-    return data;
-            break;
-        case '4':
-            data[0] = LOBYTE(LOWORD(deg2value(val)));
-            data[1] = HIBYTE(LOWORD(deg2value(val)));
-            data[2] = LOBYTE(HIWORD(deg2value(val)));
-            data[3] = HIBYTE(HIWORD(deg2value(val)));
-    return data;
-            break;
-    }
 }
 
 function updateCRC(s)
@@ -87,8 +65,8 @@ function updateCRC(s)
 
   for (var j = 0; j < s.length-2; j++)
   {
-    i = ((crc >> 8) ^ s[j]) & 0xFF;
-    crc = (crc << 8) ^ crc_table[i];
+    i   =   ((crc >> 8) ^ s[j]) & 0xFF;
+    crc =   (crc << 8) ^ crc_table[i];
   }
   return ((crc ^ 0) & 0xFFFF);
 }
@@ -125,7 +103,7 @@ function MAKEDWORD(a,b)
 
 function deg2value(deg)
 {
-    var value = 0;
+    var value;
     value = (180 + Number(deg)) * 4096 / 360;
     return value;
 }
@@ -148,9 +126,10 @@ exports.pingPacket = function(ID){
 }
 
 exports.writeTxPacket = function(ID, address, length, val){
-    var total_packet = 12 + length;
-    var txpacket = Buffer.alloc(total_packet);
-    var data = Buffer.alloc(length);
+    var total_packet    = 12 + length;
+    var txpacket        = Buffer.alloc(total_packet);
+    var data            = Buffer.alloc(length);
+
     switch(length){
         case 1:
             data[0] = val;
@@ -188,16 +167,17 @@ function txPacket(txpacket)
     txpacket[3] = 0x00;
 
     var crc = updateCRC(txpacket);
+
     txpacket[txpacket.length - 2] = LOBYTE(crc);
     txpacket[txpacket.length - 1] = HIBYTE(crc);
 
-    write(txpacket); 
+    write(txpacket);
 }
 
 function write(buf) {
     if(portconnect == 1){
-        port.write( buf, function(err, results) {
-            if(err) {
+        port.write( buf, function(err, results){
+            if(err){
                 console.log('Err: ' + err);
                 console.log('Results: ' + results);
             }
@@ -208,57 +188,58 @@ function write(buf) {
 exports.readRxPacket = function(ID, address, length, callback){
     var txpacket = Buffer.alloc(14);
 
-    txpacket[4] = ID;
-    txpacket[5] = 7;
-    txpacket[6] = 0;
-    txpacket[7] = 0x02;
-    txpacket[8] = LOBYTE(address);
-    txpacket[9] = HIBYTE(address);
-    txpacket[10] = LOBYTE(length);
-    txpacket[11] = HIBYTE(length);
+    txpacket[4]     = ID;
+    txpacket[5]     = 7;
+    txpacket[6]     = 0;
+    txpacket[7]     = 0x02;
+    txpacket[8]     = LOBYTE(address);
+    txpacket[9]     = HIBYTE(address);
+    txpacket[10]    = LOBYTE(length);
+    txpacket[11]    = HIBYTE(length);
 
     txPacket(txpacket);
 }
 
-var ref=[];
-var deg_list=[];
+var ref         = [];
+var deg_list    = [];
+
 exports.rxPacket = function(id, length, callback)
 {
-	if(portconnect == 1){
-	port.once('data', function(input){
-		port.setMaxListeners(100);
-        var inputdata = Buffer(input);
-        var dpacket = inputdata.length;
-		if(dpacket != length) {
-			return;
-		}
+    if(portconnect == 1){
+    port.once('data', function(input){
+        port.setMaxListeners(100);
+        var inputdata   = Buffer(input);
+        var dpacket     = inputdata.length;
+        if(dpacket != length){
+            return;
+        }
 
         var data;
-		if(id == inputdata[dpacket-11]){ 
-                ref[id] = MAKEDWORD(MAKEWORD(inputdata[dpacket-6], inputdata[dpacket-5]), MAKEWORD(inputdata[dpacket-4], inputdata[dpacket-3]));
-                deg = value2deg(ref[id]);
-				callback(deg);
-		}else{
-			for(i=1;i<9;i++){
-				dpacket = 15*i;
-                ref[i-1] = MAKEDWORD(MAKEWORD(inputdata[dpacket-6], inputdata[dpacket-5]), MAKEWORD(inputdata[dpacket-4], inputdata[dpacket-3]));
-                deg_list[i-1] = value2deg(ref[i-1]);
-			}
-			callback(deg_list);
-		}
-		port.removeListener('data',function(input){
-			input = null;
-			port = null;
-		});
+        if(id == inputdata[dpacket-11]){ 
+                ref[id]     = MAKEDWORD(MAKEWORD(inputdata[dpacket-6], inputdata[dpacket-5]), MAKEWORD(inputdata[dpacket-4], inputdata[dpacket-3]));
+                deg         = value2deg(ref[id]);
+                callback(deg);
+        }else{
+            for(i=1;i<9;i++){
+                dpacket         = 15*i;
+                ref[i-1]        = MAKEDWORD(MAKEWORD(inputdata[dpacket-6], inputdata[dpacket-5]), MAKEWORD(inputdata[dpacket-4], inputdata[dpacket-3]));
+                deg_list[i-1]   = value2deg(ref[i-1]);
+            }
+            callback(deg_list);
+        }
+        port.removeListener('data',function(input){
+            input   = null;
+            port    = null;
+        });
     });
-	}else if(portconnect == 0){
-		callback(0);
-	}
+    }else if(portconnect == 0){
+        callback(0);
+    }
 }
 
 function servo_list(inputdata){
-    var packet_num = inputdata.length / 14;
-    var id_list = [];
+    var packet_num  = inputdata.length / 14;
+    var id_list     = [];
     for(var i=0;i<packet_num;i++){
         var id = inputdata[4 + (14 * i)];
         id_list.push(id);
@@ -266,10 +247,10 @@ function servo_list(inputdata){
     return id_list;
 }
 
-var id_list_ = [];
-var address_list_ = [];
-var length_list_ = [];
-var data_list_ = [];
+var id_list_        = [];
+var address_list_   = [];
+var length_list_    = [];
+var data_list_      = [];
 
 function bulkWriteTxOnly( param, param_length){
     var txpacket = Buffer.alloc(param_length + 10);
@@ -290,13 +271,12 @@ function makeParam(){
     for(var i=0; i<id_list_.length; i++)
         param_length += 1 + 2 + 2 + length_list_[id_list_[i]];
 
-    var param = Buffer.alloc(param_length);
-
-    var idx = 0;
-	var id = [];
-	id_list_.length = 8;
+    var param       = Buffer.alloc(param_length);
+    var idx         = 0;
+    var id          = [];
+    id_list_.length = 8;
     for(var i=0; i<id_list_.length; i++){
-		 id = id_list_[i];
+         id = id_list_[i];
 
         param[idx++] = id;
         param[idx++] = LOBYTE(address_list_[id]);
@@ -305,22 +285,24 @@ function makeParam(){
         param[idx++] = HIBYTE(length_list_[id]);
         for(var c=0; c<length_list_[id]; c++){
             param[idx++] = data_list_[id][c];
-		}
+        }
     }
     bulkWriteTxOnly(param, param_length);
 }
 
-var id_list_ = Buffer.alloc(0);
-var address_list_ = Buffer.alloc(0);
-var length_list_ = Buffer.alloc(0);
-var data_list_ = Buffer.alloc(0);
+var id_list_        = Buffer.alloc(0);
+var address_list_   = Buffer.alloc(0);
+var length_list_    = Buffer.alloc(0);
+var data_list_      = Buffer.alloc(0);
 
 module.exports.addParam = function(ID, address, length, val){
-	id_list_.push(ID);
-    address_list_[ID] = address;
-    length_list_[ID] = length;
-    data_list_[ID] = [];
-    var data = Buffer(length);
+    id_list_.push(ID);
+
+    address_list_[ID]   = address;
+    length_list_[ID]    = length;
+    data_list_[ID]      = [];
+    var data            = Buffer(length);
+
     switch(length){
         case 1:
             data[0] = val;
@@ -338,14 +320,14 @@ module.exports.addParam = function(ID, address, length, val){
     }
     for(var i=0; i<length; i++){
         data_list_[ID][i] = data[i];
-	}
+    }
 }
 
 module.exports.clearParam = function(){
-    id_list_ = [];
-    address_list_ = [];
-    length_list_ = [];
-    data_list_ = [];
+    id_list_        = [];
+    address_list_   = [];
+    length_list_    = [];
+    data_list_      = [];
 }
 
 module.exports.bulkwriteTxPacket = function(){
@@ -353,29 +335,29 @@ module.exports.bulkwriteTxPacket = function(){
 }
 
 function syncmakeParam(){
-	var param = Buffer.alloc(8);
-	for(var i = 0; i < param.length; i++){
-		param[i] = i+2;
-	}
-	return param;
+    var param = Buffer.alloc(8);
+    for(var i = 0; i < param.length; i++){
+        param[i] = i+2;
+    }
+    return param;
 }
 
 exports.syncreadRxPacket = function(address, length, callback){
     var txpacket = Buffer.alloc(14+8);
 
-    txpacket[4] = 0xFE;
-    txpacket[5] = 7+8;
-    txpacket[6] = 0x00;
-    txpacket[7] = 0x82;
-    txpacket[8] = LOBYTE(address);
-    txpacket[9] = HIBYTE(address);
-    txpacket[10] = LOBYTE(length);
-    txpacket[11] = HIBYTE(length);
+    txpacket[4]     = 0xFE;
+    txpacket[5]     = 7+8;
+    txpacket[6]     = 0x00;
+    txpacket[7]     = 0x82;
+    txpacket[8]     = LOBYTE(address);
+    txpacket[9]     = HIBYTE(address);
+    txpacket[10]    = LOBYTE(length);
+    txpacket[11]    = HIBYTE(length);
 
-	var list = syncmakeParam();
-	for(var i=1;i<list.length+1;i++){
-		txpacket[11+i] = list[i-1];
-	}
+    var list = syncmakeParam();
+    for(var i=1;i<list.length+1;i++){
+        txpacket[11+i] = list[i-1];
+    }
 
     txPacket(txpacket);
 }

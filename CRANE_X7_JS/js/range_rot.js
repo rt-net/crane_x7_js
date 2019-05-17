@@ -1,29 +1,30 @@
-var div_select_shift = document.createElement('div');
-var select_shift = document.createElement('a');
-//select_shift.setAttribute('style','cursor: pointer;');
-//select_shift.textContent = 'range';
-var shift_img = document.createElement('img');
+/*
+関節角度変更スライドバー
+*/
+var div_select_shift    = document.createElement('div');
+var select_shift        = document.createElement('a');
+var shift_img           = document.createElement('img');
 shift_img.setAttribute('type','image');
 shift_img.setAttribute('src','js/img/range.png');
 shift_img.setAttribute('alt','range');
 shift_img.setAttribute('width','35');
 shift_img.setAttribute('height','35');
 div_select_shift.appendChild(shift_img);
-var div_select_shift_top = 20;
-var div_select_shift_left = 100;
-div_select_shift.style.cssText = get_css_base(div_select_shift_top, div_select_shift_left);
-div_select_shift.onclick = function(){
-	obj=document.getElementById('open2').style; 
-	obj.display=(obj.display=='none')?'inline':'none';
-	div_select_shift.style.backgroundColor = (obj.display=='none')?'#EEEEEE':'#CCCCCC';
-	if(obj.display === 'none') {
-		range_obj_pos = parseInt(document.getElementById('range_obj').style.top);
-		test(range_obj_pos, range_form);
-		diff_pos -= range_form;
-	}else {
-		main_div.style.cssText = get_css_form(form_pos+diff_pos, 20, 0xEEEEEE);
-		diff_pos += range_form;
-	}
+var div_select_shift_top        = 20;
+var div_select_shift_left       = 100;
+div_select_shift.style.cssText  = get_css_base(div_select_shift_top, div_select_shift_left);
+div_select_shift.onclick        = function(){
+    obj=document.getElementById('open2').style; 
+    obj.display=(obj.display=='none')?'inline':'none';
+    div_select_shift.style.backgroundColor = (obj.display=='none')?'#EEEEEE':'#CCCCCC';
+    if(obj.display === 'none'){
+        range_obj_pos = parseInt(document.getElementById('range_obj').style.top);
+        test(range_obj_pos, range_form);
+        diff_pos -= range_form;
+    }else{
+        main_div.style.cssText = get_css_form(form_pos+diff_pos, 20, 0xEEEEEE);
+        diff_pos += range_form;
+    }
 }
 div_select_shift.appendChild(select_shift);
 document.body.appendChild(div_select_shift);
@@ -32,36 +33,37 @@ var main_div = document.createElement('div');
 main_div.setAttribute('class','select');
 main_div.setAttribute('id','range_obj');
 
+//スライドバーのform作成
 function range_html(id, max_range, min_range, RotIndex, style_top, style_left)
 {
-	var div = document.createElement('div');
-	div.setAttribute('class','link'+id);
-	var label = document.createElement('label');
-	if(id == 8)
-		label.textContent = '[E]';
-	else
-		label.textContent = '[' + id + ']';
+    var div     = document.createElement('div');
+    div.setAttribute('class','link'+id);
+    var label   = document.createElement('label');
+    if(id == 8)
+        label.textContent = '[E]';
+    else
+        label.textContent = '[' + id + ']';
 
-	label.style.cssText = 'vertical-align: middle; display: table-cell;';
-	var range = document.createElement('INPUT');
-	range.setAttribute('id','link'+id);
-	range.setAttribute('type','range');
-	range.setAttribute('min', min_range);
-	range.setAttribute('max', max_range);
-	range.setAttribute('value', RotIndex);
-	var target = document.getElementById('value');
-	var rangeValue = function (range, target) {
-		return function(evt){
-			set_data(id-1, this.value);
-		}
-	}
-	range.addEventListener('input', rangeValue(range, target));
-	range.hidden = ui_hidden;
-	div.appendChild( label );
-	div.appendChild( range );
-	div.style.cssText = 'display: table;';
+    label.style.cssText = 'vertical-align: middle; display: table-cell;';
+    var range           = document.createElement('INPUT');
+    range.setAttribute('id','link'+id);
+    range.setAttribute('type','range');
+    range.setAttribute('min', min_range);
+    range.setAttribute('max', max_range);
+    range.setAttribute('value', RotIndex);
+    var target      = document.getElementById('value');
+    var rangeValue  = function (range, target) {
+        return function(evt){
+            set_data(id-1, this.value);
+        }
+    }
+    range.addEventListener('input', rangeValue(range, target));
+    range.hidden        = ui_hidden;
+    div.appendChild( label );
+    div.appendChild( range );
+    div.style.cssText   = 'display: table;';
 
-	main_div.appendChild(div);
+    main_div.appendChild(div);
 }
 main_div.style.cssText = get_css_form(form_pos, 20, 0xEEEEEE);
 
