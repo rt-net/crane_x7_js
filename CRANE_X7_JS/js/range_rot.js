@@ -19,7 +19,7 @@ div_select_shift.onclick        = function(){
     div_select_shift.style.backgroundColor = (obj.display=='none')?'#EEEEEE':'#CCCCCC';
     if(obj.display === 'none'){
         range_obj_pos = parseInt(document.getElementById('range_obj').style.top);
-        test(range_obj_pos, range_form);
+        form_position(range_obj_pos, range_form);
         diff_pos -= range_form;
     }else{
         main_div.style.cssText = get_css_form(form_pos+diff_pos, 20, 0xEEEEEE);
