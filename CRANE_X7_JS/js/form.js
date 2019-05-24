@@ -14,6 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
+/*
 form作成に必要な変数,関数の定義
 */
 var COLOR_WHITE         = 0xEEEEEE;
