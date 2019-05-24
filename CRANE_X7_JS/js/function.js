@@ -1,9 +1,20 @@
 /**
- * @author Riki Hayashi
- * @copyright 2019 RikiHayashi
- * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
+   @LICENSE
+   Copyright 2019 RT Corporation and Riki Hayashi
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
-//ƒ‚ƒfƒ‹‚ÌF•ÏX
+//ãƒ¢ãƒ‡ãƒ«ã®è‰²å¤‰æ›´
 function set_color( element, color, name, top, left ){
     if( is_loaded ){
         player.setObjColor(name, color);
@@ -11,11 +22,11 @@ function set_color( element, color, name, top, left ){
     element.style.cssText = get_css(top,left,color);
 }
 
-//ƒ‚ƒfƒ‹‚ÌŠeŠÖß‚Ì•ÏX
+//ãƒ¢ãƒ‡ãƒ«ã®å„é–¢ç¯€ã®å¤‰æ›´
 function set_rotate( rot, deg, name ){
     rotate      = [0,0,0];
-    rotate[0]   = deg * 3.1415 / 180;   //‰ñ“]²
-    rotate[2]   = rot;                  //‰ñ“]Šp“x
+    rotate[0]   = deg * 3.1415 / 180;   //å›è»¢è»¸
+    rotate[2]   = rot;                  //å›è»¢è§’åº¦
     if( is_loaded ){
         player.setObjRot(name, rotate);
     }
@@ -48,7 +59,7 @@ function get_color_text(){
     return result;
 }
 
-//‰æ–ÊƒTƒCƒY‚É‚æ‚éform‚ÌÄ”z’u
+//ç”»é¢ã‚µã‚¤ã‚ºã«ã‚ˆã‚‹formã®å†é…ç½®
 function button_replace(){
     button_link5_top    = 20;
     button_link5_left   = 370;
@@ -91,7 +102,7 @@ function button_replace(){
     button_pause.style.cssText = get_css(button_pause_top,button_pause_left,0xEEEEEE);
 }
 
-//‰B‚êform‚Ì•\¦‡‚Ì§Œä
+//éš ã‚Œformã®è¡¨ç¤ºé †ã®åˆ¶å¾¡
 function form_position(pos, diff){
     color_obj   = parseInt(document.getElementById('color'      ).style.top);
     range_obj   = parseInt(document.getElementById('range_obj'  ).style.top);
@@ -109,21 +120,21 @@ function form_position(pos, diff){
     div_fig.style.cssText       = get_css_form(send_obj, 20, 0xEEEEEE);
 }
 
-//ŠeŠÖß–ˆ‚ğ“®‚©‚·
+//å„é–¢ç¯€æ¯ã‚’å‹•ã‹ã™
 function set_data(i, num){
     ref_data[i] = num;
     set_rot_data(ref_data);
     set_range(ref_data);
 }
 
-//‘SŠÖß‚ğ“®‚©‚·
+//å…¨é–¢ç¯€ã‚’å‹•ã‹ã™
 function set_list(num){
     ref_data = num;
     set_rot_data(ref_data);
     set_range(ref_data);
 }
 
-//ƒ‚ƒfƒ‹‚Ìp¨‰Šú‰»
+//ãƒ¢ãƒ‡ãƒ«ã®å§¿å‹¢åˆæœŸåŒ–
 function set_start() {
     var start_data = [0,45,0,-135,0,-65,0,0];
         set_rot_data(start_data);
@@ -139,7 +150,7 @@ window.onload = function() {
     button_replace();
 }
 
-//ƒ‚ƒfƒ‹‚©‚çŠÖß‚ÌŠp“x‚ğæ“¾
+//ãƒ¢ãƒ‡ãƒ«ã‹ã‚‰é–¢ç¯€ã®è§’åº¦ã‚’å–å¾—
 function get_rot_data() {
     var get_data;
     get_data = [
@@ -155,7 +166,7 @@ function get_rot_data() {
     return get_data;
 }
 
-//Šp“xî•ñ‚ğƒ‚ƒfƒ‹‚É“K‰
+//è§’åº¦æƒ…å ±ã‚’ãƒ¢ãƒ‡ãƒ«ã«é©å¿œ
 function set_rot_data(data) {
     if(data[3] < -145)data[3] = -145;   //limit angle
     Link1RotIndex = data[0];  //Z
@@ -177,7 +188,7 @@ function set_rot_data(data) {
     set_rotate(-check_rot(Link8RotIndex),  90, 'HandB.stl');
 }
 
-//Šp“xî•ñ‚ğƒXƒ‰ƒCƒhƒo[‚É“K‰
+//è§’åº¦æƒ…å ±ã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ãƒãƒ¼ã«é©å¿œ
 function set_range(buf){
     document.getElementById('link1').value = buf[0];
     document.getElementById('link2').value = buf[1];

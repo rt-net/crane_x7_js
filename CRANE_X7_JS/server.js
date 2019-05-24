@@ -1,9 +1,19 @@
 /**
- * @author Riki Hayashi
- * @copyright 2019 RikiHayashi
- * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
- */
+   @LICENSE
+   Copyright 2019 RT Corporation and Riki Hayashi
 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
 var express =   require('express');
 var app     =   express();
 
@@ -49,24 +59,24 @@ io.on('connection', function(socket){
     socket.on('command', function(data){
         serial.clearParam();
         switch(data.value){
-            case 'on':  //ƒgƒ‹ƒNON
+            case 'on':  //ãƒˆãƒ«ã‚¯ON
                 for(var id=2;id<=9;id++)
                     serial.addParam(id,64,1,'1');
                 serial.bulkwriteTxPacket();
                 break;
-            case 'off': //ƒgƒ‹ƒNOFF
+            case 'off': //ãƒˆãƒ«ã‚¯OFF
                 for(var id=2;id<=9;id++)
                     serial.addParam(id,64,1,'0');
                 serial.bulkwriteTxPacket();
                 break;
-            case 'set': //ƒT[ƒ{‚ÉŠp“x‘—M
+            case 'set': //ã‚µãƒ¼ãƒœã«è§’åº¦é€ä¿¡
                 var deg     =   new String(data.deg);
                 deg         =   deg.split(',');
                 for(var id=2;id<=9;id++)
                         serial.addParam(id,116,4,deg[id-2]);
                 serial.bulkwriteTxPacket();
                 break;
-            case 'move': //point-to-point‚Ìƒf[ƒ^•Û‘¶
+            case 'move': //point-to-pointã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
                 var text    =   new String();
                 if(data.deg == null)break;
 
@@ -76,7 +86,7 @@ io.on('connection', function(socket){
                 var slot    =   'data/' + 'out'+data.num+'.txt';
                 fs.writeFileSync(slot,text);
                 break;
-            case 'copy': //ƒT[ƒ{‚ÌŠp“xŽæ“¾‚Æ‹³Ž¦Ä¶ƒf[ƒ^‚ÌŠÇ—
+            case 'copy': //ã‚µãƒ¼ãƒœã®è§’åº¦å–å¾—ã¨æ•™ç¤ºå†ç”Ÿãƒ‡ãƒ¼ã‚¿ã®ç®¡ç†
                 async.series([
                     function(callback){
                         serial.syncreadRxPacket(132, 4);
@@ -125,7 +135,7 @@ http.listen(8080,ip_port, function(){
     console.log('http://' + ip_port +':8080');
 });
 
-//ipƒAƒhƒŒƒX‚ÌŽæ“¾
+//ipã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 function getLocalAddress() {
     var ifacesObj   =   {};
     ifacesObj.ipv4;

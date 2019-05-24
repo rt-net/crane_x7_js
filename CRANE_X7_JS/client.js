@@ -1,11 +1,22 @@
 /**
- * @author Riki Hayashi
- * @copyright 2019 RikiHayashi
- * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
+   @LICENSE
+   Copyright 2019 RT Corporation and Riki Hayashi
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
 var socket  =   io();
 
-//server‘¤‚Æî•ñ‚ğ‹¤—L‚·‚é‚½‚ß‚Ìflag list
+//serverå´ã¨æƒ…å ±ã‚’å…±æœ‰ã™ã‚‹ãŸã‚ã®flag list
 var state   =   {
     on      :   0,
     off     :   0,
@@ -42,7 +53,7 @@ function servoOFF(){
     SendCommand('off','0');
 }
 
-//‹³¦Ä¶‚Ìƒf[ƒ^“Ç‚İ‚İ‚ÆŠJnp¨‚Ü‚Å‚Ì„ˆÚ
+//æ•™ç¤ºå†ç”Ÿã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã¨é–‹å§‹å§¿å‹¢ã¾ã§ã®æ¨ç§»
 function text_data(){
     $.get('copy.txt',function(data, err){
         var frame = data.split('\n');
@@ -53,7 +64,7 @@ function text_data(){
     });
 }
 
-//‹³¦Ä¶
+//æ•™ç¤ºå†ç”Ÿ
 function frame_data(frame_num,frame){
     if(frame_num >= frame.length-2){
         state.set   =   0;
@@ -86,7 +97,7 @@ function frame_data(frame_num,frame){
     },20);
 }
 
-//À‹@‚Ìp¨„ˆÚ
+//å®Ÿæ©Ÿã®å§¿å‹¢æ¨ç§»
 function servoSET_delay(time, deg, goal){
     copyflag        =   0;
     var goal_time   =   1000;
@@ -119,7 +130,7 @@ function servoSET_delay(time, deg, goal){
     },20);
 }
 
-//point-to-point‚ÌÄ¶
+//point-to-pointã®å†ç”Ÿ
 let deg     =   [];
 var frame   =   0;
 var ref     =   [];
@@ -178,7 +189,7 @@ function MotionPlayBack(time,deg){
     },20);
 }
 
-//À‹@‚Æƒ‚ƒfƒ‹‚Ì“¯Šú“®ì
+//å®Ÿæ©Ÿã¨ãƒ¢ãƒ‡ãƒ«ã®åŒæœŸå‹•ä½œ
 function CopyPlay(){
     if(copyflag == 0) return;
 
@@ -195,7 +206,7 @@ function CopyPlay(){
     },20);
 }
 
-//Œ»İ‚ÌÀ‹@‚Ìp¨‚Ìæ“¾
+//ç¾åœ¨ã®å®Ÿæ©Ÿã®å§¿å‹¢ã®å–å¾—
 var read_count  =   0;
 function Read(goal){
     if(read_count >= 2){
@@ -266,7 +277,7 @@ function sendPort(){
     socket.emit('send',state);
 }
 
-//server‘¤‚Å“Á’è‚Ìó‘Ô‚ğ§ŒÀ(‘½l”‚Å‚Ì‘€ì§ŒÀ)
+//serverå´ã§ç‰¹å®šã®çŠ¶æ…‹ã‚’åˆ¶é™(å¤šäººæ•°ã§ã®æ“ä½œåˆ¶é™)
 socket.on('state',function(state){
     if(state.send){
         document.getElementById('send').innerText = 'connected';

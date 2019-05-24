@@ -1,10 +1,21 @@
 /**
- * @author Riki Hayashi
- * @copyright 2019 RikiHayashi
- * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
+   @LICENSE
+   Copyright 2019 RT Corporation and Riki Hayashi
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
 /*
-point-to-point‚ÌÄ¶
+point-to-pointã®å†ç”Ÿ
 */
 var div_shift_slot  = document.createElement('div');
 var shift           = document.createElement('a');
@@ -181,14 +192,14 @@ div_shift_slot_base.setAttribute('style','display:none;clear:both;');
 div_shift_slot_base.appendChild( div );
 document.body.appendChild( div_shift_slot_base );
 
-//form—Ìˆæ“à‚ÌƒNƒŠƒbƒN‚É‚æ‚é‘I‘ğƒf[ƒ^‚Ì‰ğœ
+//formé ˜åŸŸå†…ã®ã‚¯ãƒªãƒƒã‚¯ã«ã‚ˆã‚‹é¸æŠãƒ‡ãƒ¼ã‚¿ã®è§£é™¤
 $('.select').click(function(event){
     if(!$(event.target).closest(text_list).length && !$(event.target).closest(all_selected).length && !$(event.target).closest(button_move).length && !$(event.target).closest(div_loop).length){
         $('#select option').attr('selected', false);
     }
 });
 
-//•Û‘¶ƒf[ƒ^‚ÌØ‚è‘Ö‚¦
+//ä¿å­˜ãƒ‡ãƒ¼ã‚¿ã®åˆ‡ã‚Šæ›¿ãˆ
 button1.onclick = function(){
     button1.style.cssText = 'padding: 2px 11px; background-color: #CCCCCC;';
     button2.style.cssText = 'background-color: ;';
@@ -252,7 +263,7 @@ button3.onclick = function(){
     });
 }
 
-//point-to-point‚ÌÄ¶
+//point-to-pointã®å†ç”Ÿ
 button_move.onclick = function(){
     $('[id=set]'    ).attr('disabled',true);
     $('[id=on]'     ).attr('disabled',true);
