@@ -14,8 +14,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "hr",
-  "license": "ISC",
+  "author": "RikiHayashi",
+  "license": "Apache 2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rt-net/crane_x7_js.git"

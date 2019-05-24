@@ -1,3 +1,9 @@
+/**
+ * @author Riki Hayashi
+ * @copyright 2019 RikiHayashi
+ * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
+ */
+
 /*
 form作成に必要な変数,関数の定義
 */

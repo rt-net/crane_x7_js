@@ -1,3 +1,8 @@
+/**
+ * @author Riki Hayashi
+ * @copyright 2019 RikiHayashi
+ * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
+ */
 /*
 関節角度変更スライドバー
 */

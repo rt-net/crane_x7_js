@@ -1,3 +1,8 @@
+/**
+ * @author Riki Hayashi
+ * @copyright 2019 RikiHayashi
+ * @license http://www.apache.org/licenses/license-2.0 Apache-2.0
+ */
 //ƒ‚ƒfƒ‹‚ÌF•ÏX
 function set_color( element, color, name, top, left ){
     if( is_loaded ){
