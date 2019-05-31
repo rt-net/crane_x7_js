@@ -6,6 +6,14 @@ CRANE_X7をNode.js,three.jsを使用してWebブラウザで動作できるサ�
 
 - OS: Linux Ubuntu 16.04 64bit
 - ブラウザ: Firefox 61.0.1 64bit
+- Node.js: v10.16.0
+- npm: v6.9.0
+- three.js: r97
+
+## 動作確認済みブラウザ
+- Firefox: 67.0
+- Google Chrom: 69.0.3497.100（Official Build） （64 ビット）
+- Vivaldi: 2.1.1337.36 (Stable channel) (64-bit)
 
 ## nodeのインストール
 
@@ -46,17 +54,17 @@ $ sudo make install
 本リポジトリを `git clone` コマンドでダウンロードします.   
 
 ```
-$ git clone https://github.com/rt-net/CRANE_X7_JS.git 
+$ git clone https://github.com/rt-net/crane_x7_js.git 
 ```
 
 ### npmパッケージのインストール
 
 本プログラムで使用する以下の4つのnpmパッケージをインストールします.   
 
-- serialport
-- socket.io
-- express
-- async
+- serialport: ^7.0.2
+- socket.io: ^2.1.1
+- express: ^4.16.4
+- async: ^2.6.1
 
 ```
 $ cd crane_x7_js/CRANE_X7_JS
@@ -70,6 +78,7 @@ $ npm install
 ### プログラムの実行
 以下、コマンドを実行して、Webサーバを起動します.   
 ```
+$ cd crane_x7_js/CRANE_X7_JS
 $ npm start   
 http://****:8080
 ```
@@ -127,7 +136,7 @@ http://****:8080
 デバイスを接続して、別端末を開いて、以下の操作を行います.   
 
 - USB接続   
-    [SMPS2Dynamixel](http://www.robotis-shop-jp.com/?act=shop_jp.goods_view&GS=1267&GC=GD0C0102)などの電源基盤と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
+    [SMPS2Dynamixel](http://www.robotis-shop-jp.com/?act=shop_jp.goods_view&GS=1267&GC=GD0C0102)などの電源基板と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
 
 - デバイスが認識されているか確認   
 
@@ -162,13 +171,14 @@ $ sudo chmod a+rw /dev/ttyUSB0
 1. 実機をトルクOFF状態にし、`copy`を実行
 2. `coping`状態中に、教示ボタンを押すことで動作の保存を開始
 3. もう一度教示ボタンを押すことで動作の保存を終了
-4. 再生を押すことで、教示した動作を実行
+4. 再生を押すことで、教示した動作を実行   
+5. 実機をトルクON状態にし、再生を押すことで実際に実機が教示した動作を実行
 
 [デモ](https://youtu.be/3mZW4eVuI-c)
 
 ## 注意事項
   
-__緊急停止としてキー入力(特殊キー抜く)を行うとトルクがOFFになります__
+__緊急停止としてキー入力(特殊キー以外)を行うとトルクがOFFになります__
 
 ## License
 
