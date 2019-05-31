@@ -93,27 +93,28 @@ http://****:8080
 
 ## 使用方法 各種操作説明
 各ボタンを押すと要素が開きます.   
-### モデル変更 `color`
+### <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/color.png" width="50px">:[モデル変更]
+
 ![color](https://github.com/rt-net/crane_x7_js/blob/image/img/color.png)
 #### 色変更
  最上部(1~11)が各リンクの色を変更できます.
 
 #### モデル回転
  `@`でモデルが回転します.   
-
-### ジョイント操作 `range`
+ 
+### <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/range.png" width="50px">:[ジョイント操作]
 ![range](https://github.com/rt-net/crane_x7_js/blob/image/img/range.png)   
 #### モデル操作
  `スライドバー`を動かすことで対応する関節が動きます.
 
-
-### モーション作成
+### <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/slot.png" width="50px">:[モーション作成]
 ![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/slot.png)     
 
  - `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
  
  - `#`:モデルが初期姿勢に変化     
- - `再生`:選択したデータを再生(**実機のトルクがONの場合実機が動作します**)   
+ - `再生`<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/move.png" width="20px">
+:選択したデータを再生(**実機のトルクがONの場合実機が動作します**)   
  - `loop`:チェックボックスにチェックすると、モーションをループ   
           ボックス内には、保存したデータが表示   
  - `DEL`:選択したデータの削除(Delキーでも可能)   
@@ -124,8 +125,8 @@ http://****:8080
  データを選択して再生することで、ブラウザ及び実機で動作確認することが可能です.   
  
  ![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/demo.gif) 
-
-## 実機動作 `send`
+ 
+## <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/send.png" width="50px">:[実機動作]
 ### 実機に関して
 ブラウザで作成した動作を実機で動作させることができます.   
 実機は[CRANE-X7の製品ページ](https://www.rt-net.jp/products/crane-x7)を確認して下さい.   
@@ -162,15 +163,15 @@ $ sudo chmod a+rw /dev/ttyUSB0
 - `SET`:実機が画面上のモデルと同じ姿勢に移動   
 - `ON`:トルクON  
 - `OFF`:トルクOFF    
-- `再生`:教示保存したデータを再生
-- `教示`:実機でトレースした動きを保存
+- `再生`<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/move.png" width="20px">:教示保存したデータを再生
+- `教示`<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/log.png" width="20px">:実機でトレースした動きを保存
 - `RESET`:ブラウザ上のモデルを初期姿勢に変更   
 
 **実機のトルクがONの場合実機が動作します**   
 ## 教示再生手順
 1. 実機をトルクOFF状態にし、`copy`を実行
-2. `coping`状態中に、教示ボタンを押すことで動作の保存を開始
-3. もう一度教示ボタンを押すことで動作の保存を終了
+2. `coping`状態中に、教示ボタン<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/log.png" width="20px">を押すことで動作の保存を開始
+3. もう一度教示ボタン<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/out.png" width="20px">を押すことで動作の保存を終了
 4. 再生を押すことで、教示した動作を実行   
 5. 実機をトルクON状態にし、再生を押すことで実際に実機が教示した動作を実行
 
