@@ -28,7 +28,7 @@ nodeのインストール方法として,
 Node.js: 10.16.0 をapt でインストールする.   
 ```
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo apt install nodejs
 ```
 
 - ### nodebrewを使ってインストール
@@ -36,7 +36,7 @@ sudo apt-get install -y nodejs
 [hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)はNode.jsのバージョン管理ツールです。パッケージマネージャのようにNode.jsのバージョンを切り替えて使うことができます.     
 
 ``` 
-$ sudo apt-get -y install curl
+$ sudo apt install curl
 $ curl -L git.io/nodebrew | perl - setup
 $ echo "export PATH=\$HOME/.nodebrew/current/bin:\$PATH" >> ~/.bashrc
 $ source ~/.bashrc
