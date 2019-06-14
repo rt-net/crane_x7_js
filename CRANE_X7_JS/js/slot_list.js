@@ -289,7 +289,6 @@ $(window).keydown(function(e){
         $('#select > option:selected').remove();
     else if(65 <= e.keyCode && e.keyCode <= 90){
         servoOFF();
-        console.log(e.keyCode);
     }
 });
 
