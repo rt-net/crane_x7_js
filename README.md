@@ -18,33 +18,34 @@ CRANE_X7をNode.js,three.jsを使用してWebブラウザで動作できるサ�
 ## nodeのインストール
 
 本プログラムは[Node.js](https://nodejs.org/ja/)を使用しています.   
-[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)を使ってインストールするか、ソースからインストールします.   
+
+nodeのインストール方法として,
+[nodesource/distributions](https://github.com/nodesource/distributions/blob/master/README.md)と[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)を使ったインストール方法を記載します.   
+
+
+### nodesource/distributionsでインストール
+
+Node.js: 10.16.0 をapt でインストールする.   
+```
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
 ### nodebrewを使ってインストール
 
 [hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)はNode.jsのバージョン管理ツールです。パッケージマネージャのようにNode.jsのバージョンを切り替えて使うことができます.     
-nodebrewを使ってNode.js: 8.11.3 LTSをインストールする方法は以下の通りです.   
 
 ``` 
 $ sudo apt-get -y install curl
 $ curl -L git.io/nodebrew | perl - setup
 $ echo "export PATH=\$HOME/.nodebrew/current/bin:\$PATH" >> ~/.bashrc
-$ export PATH=$HOME/.nodebrew/current/bin:$PATH
-$ nodebrew install-binary v8.11.3
-$ nodebrew use v8.11.3
+$ source ~/.bashrc
 ```
 
-### ソースからインストール
-
-Node.js: 8.11.3 LTSを[node-v8.11.3 source](https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz)からインストールする方法は以下の通りです.   
-
-``` 
-$ wget https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
-$ tar xvf node-v8.11.3.tar.gz
-$ cd node-v8.11.3
-$ ./configure
-$ make
-$ sudo make install
+nodebrewを使ってNode.js: 10.16.0 をインストールする方法は以下の通りです.   
+```
+$ nodebrew install v10.16.0
+$ nodebrew use v10.16.0
 ```
 
 ## パッケージのインストール
