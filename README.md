@@ -27,8 +27,9 @@ nodeのインストール方法として,
 
 Node.js: 10.16.0 をapt でインストールする.   
 ```
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt install nodejs
+$ sudo apt install curl
+$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$ sudo apt install nodejs
 ```
 
 - ### nodebrewを使ってインストール
