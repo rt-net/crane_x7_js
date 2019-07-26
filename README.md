@@ -139,7 +139,7 @@ http://****:8080
 デバイスを接続して、別端末を開いて、以下の操作を行います.   
 
 - USB接続   
-    [SMPS2Dynamixel](http://www.robotis-shop-jp.com/?act=shop_jp.goods_view&GS=1267&GC=GD0C0102)などの電源基板と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
+    [SMPS2Dynamixel](https://www.rt-shop.jp/index.php?main_page=product_info&cPath=1348_5&products_id=523)などの電源基板と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
 
 - デバイスが認識されているか確認   
 
