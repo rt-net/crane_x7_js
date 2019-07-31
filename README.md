@@ -61,12 +61,14 @@ $ git clone https://github.com/rt-net/crane_x7_js.git
 
 ### npmパッケージのインストール
 
-本プログラムで使用する以下の4つのnpmパッケージをインストールします.   
+本プログラムで使用する以下の6つのnpmパッケージをインストールします.   
 
 - serialport: ^7.0.2
-- socket.io: ^2.1.1
+- socket.io: ^2.2.0
 - express: ^4.16.4
 - async: ^2.6.1
+- three: ^0.106.2
+- jquery: ^3.4.1
 
 ```
 $ cd crane_x7_js/CRANE_X7_JS
