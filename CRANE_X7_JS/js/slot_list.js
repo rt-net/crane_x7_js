@@ -122,7 +122,7 @@ $.get('data/out1.txt',function(data){
 text_list.style.cssText     = 'vertical-align: middle; display: block;';
 text_list.onchange          = function() {
     var input   = $('#select > option:selected').val();
-    if($('#select > option:selected').size() == 1){
+    if($('#select > option:selected').length == 1){
         list_select_flag = 1;
     }else{
         list_select_flag = 0;
@@ -139,7 +139,7 @@ button_clip.textContent     = 'clip';
 button_clip.onclick         = function(){
     data = get_rot_data();
     button_clip.setAttribute('val',data);
-    if($('#select > option:selected').size()){
+    if($('#select > option:selected').length){
         $('#select > option:selected').html('ROT:'+data).val(data);
     }else{
         $('#select').append($('<option>').html('ROT:'+data).val(data));
