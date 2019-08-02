@@ -59,7 +59,7 @@ function text_data(){
         var frame = data.split('\n');
         Read(frame[0].split(','));
         setTimeout(function(){
-            frame_data(1,frame);
+            frame_data(0,frame);
         },4000);
     });
 }
@@ -137,7 +137,7 @@ var ref     =   [];
 function MotionPlayBack(time,deg){
     var data        =   $('[id=select]').val();
     var goal_time   =   500;
-    if(data == null){
+    if(data[frame] == null){
         state.set   =   0;
         state.move  =   0;
         state.on    =   0;
@@ -210,7 +210,8 @@ function CopyPlay(){
 var read_count  =   0;
 function Read(goal){
     if(read_count >= 2){
-        if(deg.length != 8){
+        var loop    =   $('[id=loop]').prop('checked');
+        if(loop == 1 || deg.length != 8){
             deg = get_rot_data();
         }
         servoSET_delay(0, deg, goal);
@@ -238,6 +239,7 @@ function Move(){
         if(deg.length != 8){
             deg     =   get_rot_data();
         }
+        frame = 0;
         MotionPlayBack(0,deg);
         var data    =   $('[id=select]').val();
         var path    =   $('[id=slot]').val();
