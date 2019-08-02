@@ -74,6 +74,7 @@ function frame_data(frame_num,frame){
         socket.emit('send',state);
         var loop    =   $('[id=loop]').prop('checked');
         if(loop){
+            state.move = 1;
             text_data();
         }
         return;
@@ -210,8 +211,10 @@ function CopyPlay(){
 var read_count  =   0;
 function Read(goal){
     if(read_count >= 2){
-        var loop    =   $('[id=loop]').prop('checked');
-        if(loop == 1 || deg.length != 8){
+        var loop = $('[id=loop]').prop('checked');
+        if(deg.length != 8){
+            deg = get_rot_data();
+        }else if(state.move == 1 && loop == 1){
             deg = get_rot_data();
         }
         servoSET_delay(0, deg, goal);
