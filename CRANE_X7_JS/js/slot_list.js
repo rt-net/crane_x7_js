@@ -195,8 +195,8 @@ document.body.appendChild( div_shift_slot_base );
 //form領域内のクリックによる選択データの解除
 $('.select').click(function(event){
     if(!$(event.target).closest(text_list).length && !$(event.target).closest(all_selected).length && !$(event.target).closest(button_move).length && !$(event.target).closest(div_loop).length){
-        $('#slot_list').children().attr('disabled',false);
-        $('#select option').attr('selected', false);
+        $('#slot_list').children().prop('disabled',false);
+        $('#select option').prop('selected', false);
     }
 });
 
