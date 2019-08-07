@@ -13,6 +13,11 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+   @REFERENCE
+       https://github.com/ROBOTIS-GIT/DynamixelSDK
+   
+   This code is based on the Dynamixel SDK source code
  */
 var SerialPort = require('serialport');
 
@@ -223,7 +228,7 @@ exports.rxPacket = function(id, length, callback)
     if(portconnect == 1){
     port.once('data', function(input){
         port.setMaxListeners(100);
-        var inputdata   = Buffer(input);
+        var inputdata   = input;
         var dpacket     = inputdata.length;
         if(dpacket != length){
             return;
@@ -316,21 +321,23 @@ module.exports.addParam = function(ID, address, length, val){
     address_list_[ID]   = address;
     length_list_[ID]    = length;
     data_list_[ID]      = [];
-    var data            = Buffer(length);
 
     switch(length){
         case 1:
-            data[0] = val;
+            var data    = Buffer.alloc(1);
+            data[0]     = val;
             break;
         case 2:
-            data[0] = LOBYTE(val);
-            data[1] = HIBYTE(val);
+            var data    = Buffer.alloc(2);
+            data[0]     = LOBYTE(val);
+            data[1]     = HIBYTE(val);
             break;
         case 4:
-            data[0] = LOBYTE(LOWORD(deg2value(val)));
-            data[1] = HIBYTE(LOWORD(deg2value(val)));
-            data[2] = LOBYTE(HIWORD(deg2value(val)));
-            data[3] = HIBYTE(HIWORD(deg2value(val)));
+            var data    = Buffer.alloc(4);
+            data[0]     = LOBYTE(LOWORD(deg2value(val)));
+            data[1]     = HIBYTE(LOWORD(deg2value(val)));
+            data[2]     = LOBYTE(HIWORD(deg2value(val)));
+            data[3]     = HIBYTE(HIWORD(deg2value(val)));
             break;
     }
     for(var i=0; i<length; i++){

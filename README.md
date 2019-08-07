@@ -6,37 +6,47 @@ CRANE_X7をNode.js,three.jsを使用してWebブラウザで動作できるサ�
 
 - OS: Linux Ubuntu 16.04 64bit
 - ブラウザ: Firefox 61.0.1 64bit
+- Node.js: v10.16.0
+- npm: v6.9.0
+- three.js: r97
+
+## 動作確認済みブラウザ
+- Firefox: 67.0
+- Google Chrom: 69.0.3497.100（Official Build） （64 ビット）
+- Vivaldi: 2.1.1337.36 (Stable channel) (64-bit)
 
 ## nodeのインストール
 
 本プログラムは[Node.js](https://nodejs.org/ja/)を使用しています.   
-[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)を使ってインストールするか、ソースからインストールします.   
 
-### nodebrewを使ってインストール
+nodeのインストール方法として,
+[nodesource/distributions](https://github.com/nodesource/distributions/blob/master/README.md)と[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)を使ったインストール方法を記載します.   
 
-[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)はNode.jsのバージョン管理ツールです。パッケージマネージャのようにNode.jsのバージョンを切り替えて使うことができます.     
-nodebrewを使ってNode.js: 8.11.3 LTSをインストールする方法は以下の通りです.   
 
-``` 
-$ sudo apt-get -y install curl
-$ curl -L git.io/nodebrew | perl - setup
-$ echo "export PATH=\$HOME/.nodebrew/current/bin:\$PATH" >> ~/.bashrc
-$ export PATH=$HOME/.nodebrew/current/bin:$PATH
-$ nodebrew install-binary v8.11.3
-$ nodebrew use v8.11.3
+- ### nodesource/distributionsでインストール
+
+Node.js: 10.16.0 をapt でインストールする.   
+```
+$ sudo apt install curl
+$ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+$ sudo apt install nodejs
 ```
 
-### ソースからインストール
+- ### nodebrewを使ってインストール
 
-Node.js: 8.11.3 LTSを[node-v8.11.3 source](https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz)からインストールする方法は以下の通りです.   
+[hokaccha/nodebrew](https://github.com/hokaccha/nodebrew)はNode.jsのバージョン管理ツールです。パッケージマネージャのようにNode.jsのバージョンを切り替えて使うことができます.     
 
 ``` 
-$ wget https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
-$ tar xvf node-v8.11.3.tar.gz
-$ cd node-v8.11.3
-$ ./configure
-$ make
-$ sudo make install
+$ sudo apt install curl
+$ curl -L git.io/nodebrew | perl - setup
+$ echo "export PATH=\$HOME/.nodebrew/current/bin:\$PATH" >> ~/.bashrc
+$ source ~/.bashrc
+```
+
+nodebrewを使ってNode.js: 10.16.0 をインストールする方法は以下の通りです.   
+```
+$ nodebrew install v10.16.0
+$ nodebrew use v10.16.0
 ```
 
 ## パッケージのインストール
@@ -46,17 +56,19 @@ $ sudo make install
 本リポジトリを `git clone` コマンドでダウンロードします.   
 
 ```
-$ git clone https://github.com/rt-net/CRANE_X7_JS.git 
+$ git clone https://github.com/rt-net/crane_x7_js.git 
 ```
 
 ### npmパッケージのインストール
 
-本プログラムで使用する以下の4つのnpmパッケージをインストールします.   
+本プログラムで使用する以下の6つのnpmパッケージをインストールします.   
 
-- serialport
-- socket.io
-- express
-- async
+- serialport: ^7.0.2
+- socket.io: ^2.2.0
+- express: ^4.16.4
+- async: ^2.6.1
+- three: ^0.106.2
+- jquery: ^3.4.1
 
 ```
 $ cd crane_x7_js/CRANE_X7_JS
@@ -70,6 +82,7 @@ $ npm install
 ### プログラムの実行
 以下、コマンドを実行して、Webサーバを起動します.   
 ```
+$ cd crane_x7_js/CRANE_X7_JS
 $ npm start   
 http://****:8080
 ```
@@ -84,27 +97,28 @@ http://****:8080
 
 ## 使用方法 各種操作説明
 各ボタンを押すと要素が開きます.   
-### モデル変更 `color`
+### <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/color.png" width="50px">:[モデル変更]
+
 ![color](https://github.com/rt-net/crane_x7_js/blob/image/img/color.png)
 #### 色変更
  最上部(1~11)が各リンクの色を変更できます.
 
 #### モデル回転
  `@`でモデルが回転します.   
-
-### ジョイント操作 `range`
+ 
+### <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/range.png" width="50px">:[ジョイント操作]
 ![range](https://github.com/rt-net/crane_x7_js/blob/image/img/range.png)   
 #### モデル操作
  `スライドバー`を動かすことで対応する関節が動きます.
 
-
-### モーション作成
+### <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/slot.png" width="50px">:[モーション作成]
 ![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/slot.png)     
 
  - `1,2,3`はデータスロットとなっていて3種類のモーションを保存 
  
  - `#`:モデルが初期姿勢に変化     
- - `再生`:選択したデータを再生(**実機のトルクがONの場合実機が動作します**)   
+ - `再生`<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/move.png" width="20px">
+:選択したデータを再生(**実機のトルクがONの場合実機が動作します**)   
  - `loop`:チェックボックスにチェックすると、モーションをループ   
           ボックス内には、保存したデータが表示   
  - `DEL`:選択したデータの削除(Delキーでも可能)   
@@ -115,8 +129,8 @@ http://****:8080
  データを選択して再生することで、ブラウザ及び実機で動作確認することが可能です.   
  
  ![slot](https://github.com/rt-net/crane_x7_js/blob/image/img/demo.gif) 
-
-## 実機動作 `send`
+ 
+## <img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/send.png" width="50px">:[実機動作]
 ### 実機に関して
 ブラウザで作成した動作を実機で動作させることができます.   
 実機は[CRANE-X7の製品ページ](https://www.rt-net.jp/products/crane-x7)を確認して下さい.   
@@ -127,7 +141,7 @@ http://****:8080
 デバイスを接続して、別端末を開いて、以下の操作を行います.   
 
 - USB接続   
-    [SMPS2Dynamixel](http://www.robotis-shop-jp.com/?act=shop_jp.goods_view&GS=1267&GC=GD0C0102)などの電源基盤と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
+    [SMPS2Dynamixel](https://www.rt-shop.jp/index.php?main_page=product_info&cPath=1348_5&products_id=523)などの電源基板と[U2D2](https://www.rt-shop.jp/index.php?main_page=product_info&products_id=3618)などのUSB通信コンバータを接続し、電源を入れて、USBポートに接続して下さい.      
 
 - デバイスが認識されているか確認   
 
@@ -153,21 +167,22 @@ $ sudo chmod a+rw /dev/ttyUSB0
 - `SET`:実機が画面上のモデルと同じ姿勢に移動   
 - `ON`:トルクON  
 - `OFF`:トルクOFF    
-- `再生`:教示保存したデータを再生
-- `教示`:実機でトレースした動きを保存
+- `再生`<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/move.png" width="20px">:教示保存したデータを再生
+- `教示`<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/log.png" width="20px">:実機でトレースした動きを保存
 - `RESET`:ブラウザ上のモデルを初期姿勢に変更   
 
 **実機のトルクがONの場合実機が動作します**   
 ## 教示再生手順
 1. 実機をトルクOFF状態にし、`copy`を実行
-2. `coping`状態中に、教示ボタンを押すことで動作の保存を開始
-3. もう一度教示ボタンを押すことで動作の保存を終了
-4. 再生を押すことで、教示した動作を実行
+2. `coping`状態中に、教示ボタン<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/log.png" width="20px">を押すことで動作の保存を開始
+3. もう一度教示ボタン<img src="https://github.com/rt-net/crane_x7_js/blob/master/CRANE_X7_JS/js/img/out.png" width="20px">を押すことで動作の保存を終了
+4. 再生を押すことで、教示した動作を実行   
+5. 実機をトルクON状態にし、再生を押すことで実際に実機が教示した動作を実行
 
 [デモ](https://youtu.be/3mZW4eVuI-c)
 
 ## 注意事項
-  
+
 __緊急停止としてキー入力(a/~zA/~Z)を行うとトルクがOFFになります__
 
 ## License
