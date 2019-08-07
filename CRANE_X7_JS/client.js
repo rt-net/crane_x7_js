@@ -316,6 +316,7 @@ socket.on('state',function(state){
     }else{
         $('[id=off]'        ).prop('disabled',false);
     }
+    $('[id=reset]').focus();
 });
 
 function savetext(){
