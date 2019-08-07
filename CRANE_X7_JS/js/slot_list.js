@@ -287,8 +287,9 @@ button_save.onclick = function(){
 $(window).keydown(function(e){
     if(e.keyCode == 46)
         $('#select > option:selected').remove();
-    else if(65 < e.keyCode && e.keyCode < 90)
+    else if(65 <= e.keyCode && e.keyCode <= 90){
         servoOFF();
+    }
 });
 
 button_clear.onclick = function(){

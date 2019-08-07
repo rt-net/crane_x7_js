@@ -182,8 +182,8 @@ $ sudo chmod a+rw /dev/ttyUSB0
 [デモ](https://youtu.be/3mZW4eVuI-c)
 
 ## 注意事項
-  
-__緊急停止としてキー入力(特殊キー以外)を行うとトルクがOFFになります__
+
+__緊急停止としてキー入力(a\~zA\~Z)を行うとトルクがOFFになります__
 
 ## License
 
