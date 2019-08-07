@@ -193,7 +193,7 @@ div_shift_slot_base.appendChild( div );
 document.body.appendChild( div_shift_slot_base );
 
 //form領域内のクリックによる選択データの解除
-$('.select').click(function(event){
+$('[id = slot_list]').click(function(event){
     if(!$(event.target).closest(text_list).length && !$(event.target).closest(all_selected).length && !$(event.target).closest(button_move).length && !$(event.target).closest(div_loop).length){
         $('#select option').attr('selected', false);
     }
