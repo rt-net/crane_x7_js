@@ -12,7 +12,7 @@ CRANE_X7をNode.js,three.jsを使用してWebブラウザで動作できるサ�
 
 ## 動作確認済みブラウザ
 - Firefox: 67.0
-- Google Chrom: 69.0.3497.100（Official Build） （64 ビット）
+- Google Chrome: 69.0.3497.100（Official Build） （64 ビット）
 
 ## nodeのインストール
 
