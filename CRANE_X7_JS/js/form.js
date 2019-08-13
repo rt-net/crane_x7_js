@@ -63,7 +63,7 @@ var off_fig     = [0,-35, 0,-145, 0, 0, 0, 90];
 
 //form size Z_asix
 var color_form  = 69;
-var range_form  = 210;
+var range_form  = 230;
 var send_form   = 150;
 var slot_form   = 140;
 var form_pos    = 85;
