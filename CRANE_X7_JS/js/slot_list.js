@@ -122,7 +122,7 @@ $.get('data/out1.txt',function(data){
 text_list.style.cssText     = 'vertical-align: middle; display: block;';
 text_list.onchange          = function() {
     var input   = $('#select > option:selected').val();
-    if($('#select > option:selected').size() == 1){
+    if($('#select > option:selected').length == 1){
         list_select_flag = 1;
     }else{
         list_select_flag = 0;
@@ -139,7 +139,7 @@ button_clip.textContent     = 'clip';
 button_clip.onclick         = function(){
     data = get_rot_data();
     button_clip.setAttribute('val',data);
-    if($('#select > option:selected').size()){
+    if($('#select > option:selected').length){
         $('#select > option:selected').html('ROT:'+data).val(data);
     }else{
         $('#select').append($('<option>').html('ROT:'+data).val(data));
@@ -195,7 +195,8 @@ document.body.appendChild( div_shift_slot_base );
 //form領域内のクリックによる選択データの解除
 $('[id = slot_list]').click(function(event){
     if(!$(event.target).closest(text_list).length && !$(event.target).closest(all_selected).length && !$(event.target).closest(button_move).length && !$(event.target).closest(div_loop).length){
-        $('#select option').attr('selected', false);
+        $('#slot_list').children().prop('disabled',false);
+        $('#select option').prop('selected', false);
     }
 });
 
