@@ -1,6 +1,10 @@
 # CRANE_X7_JS
 
+![window](https://github.com/rt-net/crane_x7_js/blob/image/img/window.png)
 CRANE_X7をNode.js,three.jsを使用してWebブラウザで動作できるサンプルです.   
+
+製品ページはこちらです.   
+https://www.rt-net.jp/products/crane-x7
 
 ## 開発環境
 
