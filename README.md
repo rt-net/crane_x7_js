@@ -48,7 +48,7 @@ $ source ~/.bashrc
 
 nodebrewを使ってNode.js: 10.16.0 をインストールする方法は以下の通りです.   
 ```
-$ nodebrew install v10.16.0
+$ nodebrew install-binary v10.16.0
 $ nodebrew use v10.16.0
 ```
 
